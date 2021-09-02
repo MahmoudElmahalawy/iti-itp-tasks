@@ -1,0 +1,199 @@
+// $basecolor:red;
+// $bgcolor:white;
+// $bordercolor:blue;
+// $baseborder:2px solid $bordercolor;
+
+// p{
+//     color:$basecolor;
+//     background-color: yellow;
+//     border:$baseborder;
+// }
+// @for $i from 1 through 5 {
+//     .mansoura-#{$i}{
+//         font-size:$i*20rem;
+//     }
+// }
+
+// #mainwrapper{
+//     width:500px;
+//     height:300px;
+//     border:2px solid black;
+//     #internalwrapper{
+//         width:400px;
+//         height:300px;
+//         background-color:lightyellow;
+//         p{
+//             border:2px solid black;
+//             background-color:red;
+//             margin:10px;
+//             &:hover{
+//                 background-color: brown;
+//             }
+//             &:active{
+//                 background-color: magenta;
+//             }
+//         }
+//         &:hover{
+//             color:white;
+//         }
+//     }
+// }
+// #mainwrapper
+// #mainwrapper #internalwrapper
+// #mainwrapper #internalwrapper p
+// #mainwrapper #internalwrapper p
+
+// inheriatnce and Extend
+// to hide .main to be transpiled in output you have to write it as placeholder
+// %main
+// %main{
+//     border:2px solid black;
+//     color:red;
+//     padding:10px;
+//     font:bold 15px tahoma;
+//     margin:10px auto;
+//     background-color:yellow;
+// }
+// .newmain{
+//     @extend %main;
+//     text-decoration: underline;
+//     text-align: center;
+// }
+// .thirdmain{
+//     @extend .newmain;
+//     transform:scale(2);
+// }
+
+//@mixin mymixin($paraone,$paramtwo) {
+// -webkit-transform:$paraone($paramtwo);
+// -o-transform:$paraone($paramtwo);
+// -ms-transform:$paraone($paramtwo);
+// -moz-transform:$paraone($paramtwo);
+// transform:$paraone($paramtwo);
+//}
+
+// @mixin bordermixin($borderthikness:2px,$borderstyle:solid,$bordercolor:red) {
+//     border:$borderthikness $borderstyle $bordercolor;
+// }
+
+// p{
+//     //@include mymixin(rotate,45deg );
+//     color:red;
+//     // border:2px solid black;
+//     //@include bordermixin(5px,dashed ,red );
+//     @include bordermixin(3px,$bordercolor: brown);
+//     margin:10px;
+// }
+
+// Grid System Using Scss
+@media screen and (min-width: 0) {
+	@for $i from 1 to 13 {
+		.col-#{$i} {
+			width: 100/ (12 / $i) * 1%;
+		}
+	}
+}
+@media screen and (min-width: 767*1px) {
+	@for $i from 1 to 13 {
+		.col-sm-#{$i} {
+			width: 100/ (12 / $i) * 1%;
+		}
+	}
+}
+@media screen and (min-width: 991*1px) {
+	@for $i from 1 to 13 {
+		.col-md-#{$i} {
+			width: 100/ (12 / $i) * 1%;
+		}
+	}
+}
+* {
+	padding: 0;
+	margin: 0;
+}
+
+@mixin gridcolumns($numberofcolumns, $screenname, $screenwidth) {
+	@media screen and (min-width: $screenwidth*1px) {
+		@if ($screenname== "") {
+			@for $i from 1 through $numberofcolumns {
+				.col-#{$i} {
+					width: 100/ ($numberofcolumns/$i) * 1%;
+				}
+				.offset-#{$i} {
+					margin-left: 100/ ($numberofcolumns/$i) * 1%;
+				}
+			}
+			.hidden {
+				display: none !important;
+			}
+			.show {
+				display: block !important;
+			}
+		} @else {
+			@for $i from 1 through $numberofcolumns {
+				.col-#{$screenname}-#{$i} {
+					width: 100/ ($numberofcolumns/$i) * 1%;
+				}
+				.offset-#{$screenname}-#{$i} {
+					margin-left: 100/ ($numberofcolumns/$i) * 1%;
+				}
+			}
+			.hidden-#{$screenname} {
+				display: none !important;
+			}
+			.show-#{$screenname} {
+				display: block !important;
+			}
+		}
+	}
+}
+
+.container {
+	width: 100%;
+}
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+@include gridcolumns(12, "", 0);
+@include gridcolumns(12, "sm", 576);
+@include gridcolumns(12, "md", 767);
+@include gridcolumns(12, "lg", 991);
+@include gridcolumns(12, "xl", 1199);
+@include gridcolumns(12, "xxl", 1399);
+
+// lists
+// .facebook{
+//     background-image: url('images/facebook.jpg');
+//     color:blue;
+// }
+// .twitter{
+//     background-image: url('images/twitter.jpg');
+//     color:lightblue;
+// }
+// .insta{
+//     background-image: url('images/insta.jpg');
+//     color:red;
+// }
+
+// $list: facebook  twitter insta;
+// @each $social in $list{
+//     .#{$social}{
+//         background-image:url("images/"+$social+".jpg");
+
+//     }
+// }
+
+@each $social, $color, $alt in (facebook, blue, "http://www.facebook.com"),
+	(twitter, lightblue, "http://www.twitter.com"), (insta, red, "http://www.insta.com")
+{
+	.#{$social} {
+		background-image: url("images/" + $social + ".jpg");
+		color: $color;
+		&::before {
+			content: $alt;
+		}
+	}
+}

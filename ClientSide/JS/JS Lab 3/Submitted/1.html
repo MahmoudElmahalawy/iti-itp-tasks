@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>JS Lab 3 Task 1</title>
+	</head>
+	<style>
+		body {
+			font-family: Verdana;
+			text-transform: capitalize;
+		}
+		.wrapper {
+			margin: 2rem auto;
+			text-align: center;
+			border: 3px solid lightskyblue;
+			padding: 2rem 4rem;
+			width: fit-content;
+		}
+		.light {
+			display: inline-block;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			background-color: lightgrey;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<div class="light" id="stop"></div>
+			<div class="light" id="steady"></div>
+			<div class="light" id="go"></div>
+			<div><h2 id="insHeader">Instructions</h2></div>
+		</div>
+
+		<script>
+			var i = 0;
+			var lights = ["red:stop", "yellow:steady", "green:go"];
+
+			var lightDivs = document.querySelectorAll(".light");
+			var insHeader = document.getElementById("insHeader");
+
+			// console.log(lightDivs[0]);
+
+			setInterval(function () {
+				lightDivs.forEach(function (div) {
+					div.style.backgroundColor = "lightgrey";
+				});
+				lightDivs[i].style.backgroundColor = lights[i].split(":")[0];
+				insHeader.innerHTML = lights[i].split(":")[1];
+				insHeader.style.color = lights[i].split(":")[0];
+				i++;
+			}, 1100);
+		</script>
+	</body>
+</html>

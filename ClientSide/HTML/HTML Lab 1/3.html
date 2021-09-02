@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Task 3</title>
+	</head>
+	<body>
+		<font face="arial">
+			<h1 align="center"><font color="#344e75">HTML image exercises</font></h1>
+			<ul>
+				<li>
+					Display five different images. Skip two lines between each image. Each
+					image should have a title.<br /><br />
+				</li>
+
+				<img src="number-1_1.jpg" title="number 1" /><br /><br />
+				<img src="number-2_1.jpg" title="number 2" /><br /><br />
+				<img src="number-3_1.jpg" title="number 3" /><br /><br />
+				<img src="number-4_1.jpg" title="number 4" /><br /><br />
+				<img src="number-5_1.jpg" title="number 5" /><br /><br />
+
+				<li>
+					Display an image that has a border of size 2, a width of 200, and a
+					height of 200.<br /><br />
+				</li>
+
+				<img src="6-1.jpg" border="2" width="200" height="200" />
+
+				<li>
+					Display an image that when clicked will link to a search engine of
+					your choice (should be opened in a new window).<br /><br />
+				</li>
+
+				<a href="http://www.google.com.eg" target="_blank"
+					><img src="googlelogo.png"
+				/></a>
+
+				<li>
+					Display an image that when clicked will link to itself and will
+					display the image in the browser by itself.<br /><br />
+				</li>
+
+				<!-- <a href="6-1.jpg" target="_blank"><img src="6-1.jpg" /></a> -->
+
+				<img src="6-1.jpg" usemap="#elmap" />
+				<map name="elmap">
+					<area shape="rect" coords="0, 0, 208, 171" href="./6-1.jpg" />
+				</map>
+
+				<li>Implement image map.<br /><br /></li>
+
+				<img src="map.png" usemap="#mymap" />
+				<map name="mymap">
+					<area
+						shape="rect"
+						coords="205, 275, 265, 295"
+						href="https://www.w3schools.com/tags/tag_body.asp"
+					/>
+				</map>
+			</ul>
+		</font>
+	</body>
+</html>

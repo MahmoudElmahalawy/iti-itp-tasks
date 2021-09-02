@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>JS Tasks in txt file</title>
+	</head>
+	<body>
+		<button onclick="changeBgColor()">Change Background Color</button>
+		<button onclick="changeBgImage()">Change Background Image</button>
+		<button onclick="displayRandomNum()">Random Number</button>
+
+		<script>
+			var i = 0;
+			var colorsArr = ["red", "green", "blue", "white"];
+			var images = [
+				"up/1.jpg",
+				"up/2.jpg",
+				"up/3.jpg",
+				"up/4.jpg",
+				"up/5.jpg",
+			];
+
+			function changeBgColor() {
+				setInterval(function () {
+					document.body.style.backgroundColor = colorsArr[i];
+					i++;
+					if (i >= colorsArr.length) {
+						i = 0;
+					}
+				}, 1000);
+			}
+			function changeBgImage() {
+				setInterval(function () {
+					document.body.style.backgroundImage =
+						"url(" + images[i] + ")";
+					i++;
+					if (i >= images.length) {
+						i = 0;
+					}
+				}, 3000);
+			}
+			function displayRandomNum() {
+				setInterval(function () {
+					alert(Math.floor(Math.random() * 11));
+				}, 2000);
+			}
+		</script>
+	</body>
+</html>

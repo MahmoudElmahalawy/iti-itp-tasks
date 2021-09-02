@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Profile Page</title>
+	</head>
+	<body>
+		<script>
+			if (!document.cookie) {
+				document.cookie = "visit_count=1";
+			} else {
+				// document.body.onload = function () {
+				document.cookie = `visit_count=${
+					parseInt(
+						document.cookie.substring(
+							document.cookie.indexOf("=") + 1
+						)
+					) + 1
+				}`;
+				// var visitCount = parseInt(document.cookie.split("=")[1]);
+				// document.cookie = `visit_count=${++visitCount}`;
+				// };
+			}
+
+			var hrefValue = location.search;
+			var userInputs = hrefValue.substring(1);
+			var userPairs = userInputs.split("&");
+			for (var i = 0; i < userPairs.length; i++) {
+				var splittedPairs = userPairs[i].split("=");
+				if (splittedPairs[0] == "color") {
+					var userColor = splittedPairs[1];
+				}
+				if (splittedPairs[0] == "gender") {
+					if (splittedPairs[1] == "male") {
+						document.write("<img src='male.png' />");
+					} else {
+						document.write("<img src='female.png' />");
+					}
+				}
+				if (splittedPairs[0] == "name") {
+					var userName = splittedPairs[1];
+				}
+			}
+			document.write(
+				`<h2 style="display:inline;">Welcome <span style="color:${userColor};">${userName}</span> you have visited this site <span style="color:${userColor};">${
+					document.cookie.split("=")[1]
+				}</span> times</h2>`
+			);
+		</script>
+	</body>
+</html>

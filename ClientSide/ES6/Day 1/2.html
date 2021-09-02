@@ -1,0 +1,31 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Task 2</title>
+	</head>
+	<body>
+		<script>
+			let calcFun = function (operator, ...operands) {
+				let operationName = "+++";
+				switch (operator) {
+					case "+":
+						operationName = "sum";
+						break;
+					case "*":
+						operationName = "multiplication";
+						break;
+					case "/":
+						operationName = "divison";
+						break;
+					default:
+						operationName = "";
+				}
+				console.log(`Result of ${operationName} operation for ${operands} is ${eval(operands.join(operator))}`);
+			};
+			calcFun("+", 6, 5, 4, 1);
+			calcFun("*", 6, 5, 4, 1);
+		</script>
+	</body>
+</html>

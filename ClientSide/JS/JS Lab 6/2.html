@@ -1,0 +1,186 @@
+<html>
+	<head>
+		<title>JS Lab 6 Task 2</title>
+	</head>
+	<style>
+		.form-container {
+			margin: 2rem auto;
+			padding: 2rem;
+			width: 720px;
+			border: 3px solid black;
+			font-size: 1.5rem;
+		}
+		.error-name {
+			display: inline-block;
+			background-color: firebrick;
+			color: ghostwhite;
+			border-radius: 10px;
+			padding: 2px 8px;
+			font-size: 1rem;
+		}
+		label:nth-child(-n + 14) {
+			display: inline-block;
+			margin: 1rem 0;
+			width: 200px;
+		}
+		input[type="text"],
+		input[type="email"],
+		select {
+			width: 250px;
+			height: 30px;
+			/* float: right; */
+			margin-right: 50px;
+		}
+		input[type="button"],
+		input[type="submit"] {
+			margin-top: 1rem;
+			width: 150px;
+			height: 35px;
+			/* float: left;
+			justify-content: start;
+			justify-content: space-between; */
+		}
+	</style>
+	<body>
+		<div class="form-container">
+			<form action="./action-page.html">
+				<label for="userName">Name:</label>
+				<input type="text" id="userName" /><br />
+				<label for="country">Country:</label>
+				<select name="countrySelect" id="countrySelector">
+					<option value="egypt">Egypt</option>
+					<option value="ksa">KSA</option>
+					<option value="uae">UAE</option></select
+				><br />
+
+				<label for="zipCode">ZIP:</label>
+				<input type="text" id="zipCode" /><br />
+				<label for="userEmail">E-Mail:</label>
+				<input type="email" id="userEmail" /><br />
+
+				<label for="hoppies">Hoppies:</label>
+				<input type="checkbox" name="hoppiesOptions" value="writing" id="writing" />
+				<label for="writing">writing</label>
+				<input type="checkbox" name="hoppiesOptions" value="reading" id="reading" />
+				<label for="reading">reading</label>
+				<input type="checkbox" name="hoppiesOptions" value="swimming" id="swimming" />
+				<label for="swimming">swimming</label>
+				<input type="checkbox" name="hoppiesOptions" value="sleeping" id="sleeping" />
+				<label for="sleeping">sleeping</label><br />
+				<input type="submit" value="Register" id="registerBtn" />
+				<input type="button" value="Clear" id="clearBtn" />
+			</form>
+		</div>
+		<script>
+			var userNameInput = document.getElementById("userName");
+			var countrySelector = document.getElementById("countrySelector");
+			var countryOptions = document.getElementsByTagName("option");
+			// var selectedCountry;
+			var zipCodeInput = document.getElementById("zipCode");
+			var userEmailInput = document.getElementById("userEmail");
+			var hoppiesChkBxs = document.getElementsByName("hoppiesOptions");
+			var registerBtn = document.getElementById("registerBtn");
+			var clearBtn = document.getElementById("clearBtn");
+
+			var nameError = document.createElement("div");
+			nameError.innerHTML = "Name field cannot be empty";
+			nameError.classList.add("error-name");
+
+			var emailError = document.createElement("div");
+			emailError.innerHTML = "Enter a valid email";
+			emailError.classList.add("error-name");
+
+			var hoppyError = document.createElement("div");
+			hoppyError.innerHTML = "You must select at least 1 hoppy";
+			hoppyError.classList.add("error-name");
+
+			var emailReg = /^[^\s@]+@[^\s@]+$/;
+
+			window.addEventListener("load", function () {
+				userNameInput.focus();
+			});
+
+			userNameInput.addEventListener("blur", showNameErr);
+			countrySelector.addEventListener("click", getSelectedCountry);
+			userEmailInput.addEventListener("blur", validateEmail);
+			registerBtn.addEventListener("click", submitData);
+			clearBtn.addEventListener("click", clearForm);
+
+			function showNameErr() {
+				if (!userNameInput.value) {
+					userNameInput.parentElement.insertBefore(nameError, document.getElementsByTagName("br")[0]);
+					userNameInput.focus();
+					nameError.style.display = "inline-block";
+				} else {
+					nameError.style.display = "none";
+				}
+			}
+
+			function getSelectedCountry() {
+				for (var option = 0; option < countryOptions.length; option++) {
+					if (countryOptions[option].selected) {
+						// return (selectedCountry = option);
+						switch (countryOptions[option].value) {
+							case "egypt":
+								zipCodeInput.value = "111";
+								break;
+							case "ksa":
+								zipCodeInput.value = "222";
+								break;
+							case "uae":
+								zipCodeInput.value = "333";
+								break;
+						}
+					}
+				}
+			}
+
+			function validateEmail() {
+				if (!emailReg.test(userEmailInput.value)) {
+					userEmailInput.parentElement.insertBefore(emailError, document.getElementsByTagName("br")[3]);
+					// userEmailInput.focus();
+					emailError.style.display = "inline-block";
+				} else {
+					emailError.style.display = "none";
+				}
+			}
+
+			function submitData(e) {
+				var isHoppyChecked = false;
+				for (var hoppy = 0; hoppy < hoppiesChkBxs.length; hoppy++) {
+					if (hoppiesChkBxs[hoppy].checked) {
+						isHoppyChecked = true;
+						hoppyError.style.display = "none";
+					}
+				}
+				if (!isHoppyChecked) {
+					document.getElementsByTagName("form")[0].append(hoppyError);
+					// userEmailInput.focus();
+					hoppyError.style.display = "inline-block";
+					e.preventDefault();
+				}
+				console.log(isHoppyChecked);
+				// isHoppyChecked ? (emailError.style.display = "none") : (emailError.style.display = "inline-block");
+			}
+
+			function clearForm() {
+				if (confirm("Are you sure you want to clear all form's data?")) {
+					for (var hoppy = 0; hoppy < hoppiesChkBxs.length; hoppy++) {
+						hoppiesChkBxs[hoppy].checked = false;
+					}
+					userNameInput.value = "";
+					userEmailInput.value = "";
+					countrySelector.value = "egypt";
+					zipCodeInput.value = "";
+					for (
+						var errorAlert = 0;
+						errorAlert < document.getElementsByClassName("error-name").length;
+						errorAlert++
+					) {
+						document.getElementsByClassName("error-name")[errorAlert].style.display = "none";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

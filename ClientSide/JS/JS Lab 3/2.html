@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>JS Lab 3 Task 2</title>
+	</head>
+	<style>
+		body {
+			font-size: 2rem;
+		}
+		.input,
+		.output {
+			margin: 1rem auto;
+			padding: 1rem 2rem;
+			width: fit-content;
+		}
+		.input {
+			margin-top: 4rem;
+			background-color: lightskyblue;
+		}
+		.output {
+			background-color: lightcoral;
+		}
+	</style>
+	<body>
+		<script>
+			var namesArr = [];
+			var randomNamesArr = [];
+
+			do {
+				namesArr.push(
+					prompt(
+						"Enter at least 2 unique names (Cancel to see the result)"
+					)
+				);
+			} while (!(namesArr[namesArr.length - 1] == null));
+
+			console.log(namesArr);
+
+			for (var i = 0; i < namesArr.length; i++) {
+				if (!namesArr[i]) namesArr.splice(i, 1);
+			}
+
+			console.log(namesArr);
+
+			for (var i = 0; i < 2; i++) {
+				randomNamesArr[i] =
+					namesArr[Math.floor(Math.random() * namesArr.length)];
+			}
+
+			do {
+				randomNamesArr[1] =
+					namesArr[Math.floor(Math.random() * namesArr.length)];
+			} while (randomNamesArr[0] == randomNamesArr[1]);
+
+			document.write(
+				`<div class="input">Input: [ ${namesArr.join(
+					",  "
+				)} ]</div><br>`
+			);
+			document.write(
+				`<div class="output">Output: [ ${randomNamesArr.join(
+					",  "
+				)} ]</div>`
+			);
+		</script>
+	</body>
+</html>

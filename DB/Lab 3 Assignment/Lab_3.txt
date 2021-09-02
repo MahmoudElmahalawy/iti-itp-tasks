@@ -1,0 +1,114 @@
+--1
+select dependent_name, d.sex 
+from dependent d
+inner join employee e on d.essn = e.ssn
+where e.sex = 'f' and d.sex = 'f'
+union
+select dependent_name, d.sex 
+from dependent d
+inner join employee e on d.essn = e.ssn
+where e.sex = 'm' and d.sex = 'm'
+
+
+--2
+select pname, sum(hours) as 'Total hours'
+from project
+inner join works_for on pnumber = pno
+group by pname
+
+
+--3
+select dname, max(salary) as MAX_SAL, min(salary) as MIN_SAL, avg(salary) as AVG_SAL
+from departments d
+inner join employee e on d.Dnum = e.Dno
+group by dname
+
+
+--4
+select concat(fname, ' ', lname) "Manager"
+from employee e
+inner join departments d on e.ssn = d.mgrssn
+except
+select concat(fname, ' ', lname) "Manager"
+from employee e
+inner join dependent on e.ssn in (dependent.essn)
+
+
+--5
+select dnum, dname, count(ssn) 'Number of employees in dept'
+from departments d
+left outer join employee e on dnum = dno
+group by dnum, dname
+having avg(isnull(salary,0)) < (select avg(salary) from employee)
+
+
+--6
+select top(2) salary from employee
+where salary > any (select top(3) salary from employee order by salary desc)
+
+
+--7
+insert into employee
+(fname, lname, ssn, bdate, address, sex, salary, superssn, dno)
+values
+('Mahmoud', 'Hamdy', 102672, '20-1-1997', 'Tanta', 'M', 3000, 112233, 30)
+
+
+--8
+update employee
+set salary = salary * 1.2
+where ssn =
+(select ssn from employee
+where fname = 'Mahmoud' and lname = 'Hamdy')
+
+
+--9
+insert into departments
+--(dname, dnum, mgrssn, 'MGRStart Date')
+values
+('DEPT IT', 100, 112233, '1-11-2006')
+
+
+--10
+create table items
+(itm_no int primary key, itm_name varchar(30), itm_price int)
+
+
+--11
+create table orders
+(order_no int primary key, order_date date)
+
+
+--12
+create table order_item
+(order_no int, itm_no int, 
+constraint order_itm primary key (order_no, itm_no))
+
+
+--13
+alter table items
+add constraint itm_defp
+default 10 for itm_price
+
+
+--14
+alter table orders
+alter column order_date date not null
+
+
+--15
+alter table orders
+add constraint emp_fk foreign key (ssn)
+references [dbo].[employee](ssn)
+
+
+--16
+alter table items
+add constraint unq_name unique item_name
+
+
+--17
+
+
+
+--18

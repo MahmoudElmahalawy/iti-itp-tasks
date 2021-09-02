@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<title>JS Lab 4 Task 3</title>
+	</head>
+	<style>
+		.imgs__container {
+			position: relative;
+			width: 600px;
+			height: 600px;
+			margin: 1rem auto;
+			border: 3px solid hotpink;
+		}
+		img {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+		}
+		.right {
+			left: 0%;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		.left {
+			left: 100%;
+			top: 50%;
+			transform: translate(-100%, -50%);
+			/* transform: translateY(-50%); */
+		}
+		.up {
+			bottom: 0%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.controls {
+			margin: 1rem auto;
+			text-align: center;
+		}
+		#stopGoBtn {
+			width: 100px;
+		}
+	</style>
+	<body>
+		<div class="imgs__container">
+			<img src="/left-to-right.png" class="right" alt="right arrow" />
+			<img src="/right-to-left.png" class="left" alt="left arrow" />
+			<img src="/up.png" class="up" alt="up arrow" />
+		</div>
+		<div class="controls">
+			<input type="button" value="Stop" id="stopGoBtn" />
+			<input type="button" value="Reset" id="resetBtn" />
+			<div id="position"></div>
+		</div>
+
+		<script>
+			var divContainer = document.getElementsByClassName("imgs__container")[0];
+			var rightArrow = document.getElementsByClassName("right")[0];
+			var leftArrow = document.getElementsByClassName("left")[0];
+			var upArrow = document.getElementsByClassName("up")[0];
+			var imgWidth = document.getElementsByTagName("img")[0].offsetWidth;
+			var stopGoBtn = document.getElementById("stopGoBtn");
+			var resetBtn = document.getElementById("resetBtn");
+			var i = 0;
+			var isPaused,
+				downFlag = false;
+			// var upDownFlag = false;
+
+			stopGoBtn.addEventListener("click", function () {
+				if (this.value == "Stop") {
+					isPaused = true;
+					this.value = "Go";
+				} else {
+					isPaused = false;
+					this.value = "Stop";
+				}
+				// isPaused = !isPaused;
+				// this.value == "Stop" ? (this.value = "Go") : (this.value = "Stop");
+				// moveImgs();
+			});
+
+			resetBtn.addEventListener("click", function () {
+				rightArrow.style["left"] = "0px";
+				leftArrow.style["left"] = divContainer.offsetWidth + "px";
+				upArrow.style["bottom"] = "0px";
+				isPaused = true;
+				stopGoBtn.value = "Go";
+				i = 0;
+			});
+
+			var moveImgs = setInterval(function () {
+				if (!isPaused) {
+					if (i < divContainer.offsetWidth - imgWidth) {
+						rightArrow.style["left"] = i + "px";
+						leftArrow.style["left"] = divContainer.offsetWidth - i + "px";
+						document.getElementById(
+							"position"
+						).innerText = `<img src="/left-to-right.png" style="left:${i}px"/> - - - <img src="/right-to-left.png" style="left:${
+							divContainer.offsetWidth - i
+						}px"/>`;
+						if (!downFlag) {
+							upArrow.style["bottom"] = i + "px";
+						} else {
+							upArrow.style["bottom"] = divContainer.offsetWidth - imgWidth - i + "px";
+						}
+						i++;
+						if (i == divContainer.offsetWidth - imgWidth) {
+							downFlag = !downFlag;
+							// upArrow.style.transform = "rotate(180deg)";
+							i = 0;
+						}
+					}
+				}
+			}, 5);
+		</script>
+	</body>
+</html>

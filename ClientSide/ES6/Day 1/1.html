@@ -1,0 +1,20 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Task 1</title>
+	</head>
+	<body>
+		<script>
+			let testArr = [1, 5, 9, 12, 2, 4, 3, 10, 56, 51];
+
+			document.write(`<h1>Array ===> ${testArr}</h1>`);
+			document.write(`<h2>Sorting Ascending ${testArr.sort((a, b) => a - b)}</h2>`);
+			document.write(`<h2>Sorting Descending ${testArr.sort((a, b) => b - a)}</h2>`);
+			document.write(`<h2>Numbers greater than 50 ===> ${testArr.filter((n) => n > 50)}</h2>`);
+			document.write(`<h2>Max number ===> ${Math.max(...testArr)}</h2>`);
+			document.write(`<h2>Min number ===> ${Math.min(...testArr)}</h2>`);
+		</script>
+	</body>
+</html>

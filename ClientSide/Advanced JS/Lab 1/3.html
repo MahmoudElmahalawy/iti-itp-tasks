@@ -1,0 +1,35 @@
+<html lang="en">
+	<head>
+		<title>3</title>
+	</head>
+	<body>
+		<script>
+			// C- Use call and apply to reverse arguments of your function
+			// function Your_Function_Name (_a,_b,_c,_d)
+			// 1- after calling this function you have to display arguments in reversed direction using Array
+			// Object reverse method
+			// 2- display odd numbers from the passed parameters
+			// 3- get min and max values from your arguments using Math.min and Math.max
+
+			// var arr = ["a", "b", "c", "d"];
+			// console.log(arr.reverse());
+
+			function reverseArgs() {
+				var argsArr = [].slice.call(arguments);
+
+				console.log("Reversed Args: " + argsArr.reverse());
+
+				console.log(
+					"Odd numbers: " +
+						argsArr.filter(function (oddArg) {
+							return oddArg % 2 != 0;
+						})
+				);
+
+				console.log("Min: " + Math.min.apply(null, argsArr));
+				console.log("Max: " + Math.max.apply(null, argsArr));
+			}
+			reverseArgs(1, 2, 3, 4, 5, 6);
+		</script>
+	</body>
+</html>

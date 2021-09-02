@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>JS Lab 4 Task 2</title>
+	</head>
+	<style>
+		table {
+		border: 1px solid black;
+		table-layout: fixed;
+		}
+		th {
+			border-right: 1px solid black;
+			padding-right: 3rem;
+			text-align: left;
+		}
+		td {
+			border: none;
+			padding-right: 1.5rem;
+		}
+		.Pcontainer {
+			width: 600px;
+		}
+	</style>
+	<body>
+		<div class="Pcontainer">
+			<p class="styledP">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Consequatur atque nam fuga totam obcaecati quasi, quos dolore
+				quisquam voluptates sint error nobis, ullam, eaque iusto.
+				Aliquid fugit sapiente tenetur praesentium?
+			</p>
+		</div>
+		<table>
+			<tr colspan="10">
+				<th>fontFamily</th>
+				<td><input type="radio" name="fontFamily" value="arial">arial</td>
+				<td><input type="radio" name="fontFamily" value="courier">courier</td>
+				<td><input type="radio" name="fontFamily" value="georgia">georgia</td>
+				<td><input type="radio" name="fontFamily" value="impact">impact</td>
+				<td><input type="radio" name="fontFamily" value="times new roman">times new roman</td>
+				<td><input type="radio" name="fontFamily" value="verdana">verdana</td>
+			</tr>
+			<tr colspan="10">
+				<th>textAlign</th>
+				<td><input type="radio" name="textAlign" value="left">left</td>
+				<td><input type="radio" name="textAlign" value="center">center</td>
+				<td><input type="radio" name="textAlign" value="right">right</td>
+				<td><input type="radio" name="textAlign" value="justify">justify</td>
+			</tr>
+			<tr colspan="10">
+				<th>lineHeight</th>
+				<td><input type="radio" name="lineHeight" value="normal">normal</td>
+				<td><input type="radio" name="lineHeight" value="10px">10px</td>
+				<td><input type="radio" name="lineHeight" value="15px">15px</td>
+				<td><input type="radio" name="lineHeight" value="1.5">1.5</td>
+			</tr>
+			<tr colspan="10">
+				<th>letterSpacing</th>
+				<td><input type="radio" name="letterSpacing" value="normal">normal</td>
+				<td><input type="radio" name="letterSpacing" value="-1px">-1px</td>
+				<td><input type="radio" name="letterSpacing" value="2px">2px</td>
+				<td><input type="radio" name="letterSpacing" value="3px">3px</td>
+			</tr>
+		</table>
+		<script>
+            var inputRadios = document.querySelectorAll("input[type='radio']");
+
+			function addStyle() {
+				document.getElementsByClassName("Pcontainer")[0].style[this.name] = this.value;
+			}
+			
+			for (var i=0; i<inputRadios.length; i++) {
+				inputRadios[i].addEventListener("click", addStyle);
+			}
+			
+		</script>
+	</body>
+</html>

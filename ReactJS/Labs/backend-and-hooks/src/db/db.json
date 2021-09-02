@@ -1,0 +1,32 @@
+{
+	"students": [
+		{
+			"id": 1,
+			"name": "Ahmed",
+			"age": 25,
+			"trackName": "React",
+			"birthDate": "01/01/1995"
+		},
+		{
+			"id": 3,
+			"name": "Mohamed",
+			"age": 30,
+			"trackName": "PHP",
+			"birthDate": "01/01/1990"
+		},
+		{
+			"id": 4,
+			"name": "Khaled",
+			"age": 30,
+			"trackName": "Math",
+			"birthDate": "15/3/2017"
+		},
+		{
+			"id": 860,
+			"name": "Aya",
+			"age": "15",
+			"trackName": "Oprah Woodward",
+			"birthDate": "2000-07-12"
+		}
+	]
+}

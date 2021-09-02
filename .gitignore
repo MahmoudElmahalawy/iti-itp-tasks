@@ -1,0 +1,9 @@
+node_modules/
+/Project
+
+*.mkv
+*.vlc
+*.mp4
+
+*.zip
+*.rar

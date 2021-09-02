@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>JS Lab 3 Task 4</title>
+		<style>
+			input {
+				margin-bottom: 1rem;
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<form method="GET" action="profile.html">
+			<label for="name">Enter your name</label>
+			<input type="text" name="name" id="" />
+			<br />
+			<label for="age">Enter your age</label>
+			<input type="number" name="age" id="" />
+			<br />
+
+			<input type="radio" name="gender" value="male" id="male" />
+			<label for="male"
+				><img src="male.png" alt="Male Illustration"
+			/></label>
+
+			<input type="radio" name="gender" value="female" id="female" />
+			<label for="female"
+				><img src="female.png" alt="Female Illustration"
+			/></label>
+			<br />
+			<label for="color">Select your favourite color</label>
+			<select name="color" id="">
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+			</select>
+			<br />
+			<input type="submit" value="Register" />
+		</form>
+		<script>
+			var visitedCount = 0;
+			// if (location.pathname == "/profile.html") {
+			// 	visitedCount++;
+			// }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  background-color: white;
+  color: blue;
+}
+
+body {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  font-family: Tahoma;
+  background-color: black;
+}
+
+footer {
+  margin-top: 1rem;
+  -o-border-image: linear-gradient(#f6b73c, #4d9f0c) 3;
+     border-image: -webkit-gradient(linear, left top, left bottom, from(#f6b73c), to(#4d9f0c)) 3;
+     border-image: linear-gradient(#f6b73c, #4d9f0c) 3;
+  border: 1px solid blue;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+p {
+  -o-border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+     border-image: -webkit-gradient(linear, left top, left bottom, from(#f6b73c), to(#4d9f0c)) 30;
+     border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+}
+
+.content {
+  border: 1px solid blue;
+  color: white;
+  padding: 1.5rem 1rem;
+}
+/*# sourceMappingURL=2-b.css.map */

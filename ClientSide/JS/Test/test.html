@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>task 4</title>
+	</head>
+	<body>
+		<form>
+			<label>enter your name</label>
+			<input type="text" name="username" /><br /><br />
+			<label>enter your age</label>
+			<input type="text" name="age" /><br /><br />
+			<label>select gender</label>
+			<input type="radio" name="gender" value="male" />male
+			<input type="radio" name="gender" value="female" />female<br />
+			<label>select favoraite color</label>
+			<select>
+				<option name="red">Red</option>
+				<option name="green">Green</option>
+				<option name="blue">Blue</option></select
+			><br /><br />
+			<input type="submit" value="submit" />
+		</form>
+		<script>
+			//select input name
+			var nametext = document.getElementsByTagName("input")[0];
+			// select input age
+			var agetext = document.getElementsByTagName("input")[1];
+			//select submit button
+			var targetbtn = document.getElementsByTagName("input")[4];
+
+			//add event listener on btn
+			var counter = 0;
+			targetbtn.addEventListener("click", function () {
+				// get gender values
+				var allgender = document.getElementsByName("gender");
+				var gendertype;
+				for (i = 0; i < allgender.length; i++) {
+					if (allgender[i].checked == true) {
+						gendertype = allgender[i].value;
+					}
+				}
+
+				// get child window
+				var childwindow = "child.html";
+
+				//create cookie of nametext and agetext
+				document.cookie = "name=" + nametext.value;
+				document.cookie = "age=" + agetext.value;
+				document.cookie = "gender=" + gendertype;
+				window.open(childwindow);
+				counter++;
+			});
+		</script>
+	</body>
+</html>

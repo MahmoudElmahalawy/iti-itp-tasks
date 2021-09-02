@@ -1,0 +1,69 @@
+body {
+	background: url("./1-bg.jpg");
+}
+
+.wrapper {
+	margin: 50px auto;
+	padding: 2.5rem;
+	text-align: center;
+	width: 700px;
+	background-color: white;
+	border: 15px groove;
+}
+
+.header {
+	background-color: #ffbdac;
+	border: 3px solid grey;
+}
+
+.header__title {
+	display: inline-block;
+}
+
+.header__image {
+	display: inline-block;
+	/* border: 1px solid black; */
+}
+
+.nav {
+	background-color: #ffbdac;
+	margin: 0.5rem 0;
+	padding: 0.25rem;
+	border: 3px solid grey;
+}
+
+.nav > ul {
+	list-style: none;
+}
+
+.nav > ul > li {
+	display: inline-block;
+}
+
+.nav > ul > li > a {
+	color: red;
+}
+
+.main {
+	background-color: #ffbdac;
+	padding: 1.5rem 5rem;
+	text-align: left;
+	border: 3px solid grey;
+}
+
+.main__header {
+	text-decoration: underline;
+}
+
+.main__calcs--list {
+	list-style: url("./1-bullets.png");
+	text-decoration: underline;
+	color: red;
+	font-size: 1.25rem;
+	font-style: italic;
+}
+
+.footer {
+	margin: 1rem 0;
+	background-color: #ffbdac;
+}

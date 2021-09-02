@@ -1,0 +1,30 @@
+<html> <head> <style>body {
+	background-color: #74b9ff;
+}
+
+.preview {
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.preview > div {
+	border-left: 2px solid #74b9ff;
+	padding-left: 1rem;
+	height: 50px;
+	margin-bottom: 0.75rem;
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+}
+.preview > div:last-of-type {
+	margin-bottom: 3rem;
+}
+.preview > div strong {
+	display: inline-block;
+	margin-right: 2rem;
+	font-size: 1rem;
+}
+</style></head><body> <main class="container"><div class="row"><div class="col-lg-12 p-5"><div class="card"><div class="card-header"><h1 class="h3">Pug.js Demo	</h1></div><div class="card-body"><div><img class="mr-2" src="https://camo.githubusercontent.com/a43de8ca816e78b1c2666f7696f449b2eeddbeca/68747470733a2f2f63646e2e7261776769742e636f6d2f7075676a732f7075672d6c6f676f2f656563343336636565386664396431373236643738333963626539396431663639343639326330632f5356472f7075672d66696e616c2d6c6f676f2d5f2d636f6c6f75722d3132382e737667" style="width: 100px;"/><a href="https://pugjs.org/api/getting-started.html">Pug.js Docs</a></div><hr/><h2 class="h5">General Syntax</h2><section class="preview mb-4"><div><strong>main.container</strong> //To create an element, type its name w/o the normal HTML brackets. Append classes/ID with "." & "#".</div><div style="margin-left: 10px"><strong>.row</strong> //To nest an element in another, space or tab the next line to indent it. You can omit "div" if it has a class.</div><div style="margin-left: 20px"><strong>.col-lg-12.p-5#test</strong> //String multiple classes or a single ID together.</div><div style="margin-left: 30px"><strong>div</strong> // You do need to write out "div" if it does not have a class.</div><div style="margin-left: 40px"><strong>img(src="test.jpg alt="")</strong> "//Attributes (e.g, src, alt, style, etc) are added to elements with parentheses.</div></section><h2 class="h5">Built-in JavaScript Goodness</h2><div class="row"><div class="col-lg-6"><pre>Iteration ("Each") Ex:
+- var numbers = ['one', 'two', 'three']
+ul
+  each number in numbers
+    li= number</pre></div><div class="col-lg-6"><div class="bg-light p-3"><h3 class="h6">EXAMPLE</h3><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><a href="https://pugjs.org/language/iteration.html" target="_blank">View more examples in the Docs!</a></div></div></div></div></main></body></html>

@@ -1,0 +1,112 @@
+<html lang="en">
+	<head>
+		<title>2</title>
+	</head>
+	<body>
+		<script>
+			// B- Create your box object that contains books objects (Array Of Books), ensure that you can
+			// 1) Display All Books Using DisplayAllBooks Member Function inside Box object
+			// 2) DisplayBook(_name,_type)
+			// 3) count # of books inside box
+			// 4) delete any of these books in box according to book name or type
+			// 5) DeleteBook(_Name,_Type)
+			// NB: a- create constructor function named Book(_name,_type)
+			//     b- Create Box Constructor Function which will accept Array of Books as input
+
+			function Book(_name, _type) {
+				this.name = _name;
+				this.type = _type;
+
+				this.DisplayBook = function () {
+					console.log("Book name: " + this.name, ", Book type: " + this.type);
+				};
+				// this.DisplayBook = function (_name, _type) {
+				// 	console.log("Book name: " + this.name, ", Book type: " + this.type);
+				// };
+
+				this.DeleteBook = function () {
+					delete this.name;
+					delete this.type;
+				};
+				// this.DeleteBook = function (_name, _type) {
+				// 	delete this.name, this.type;
+				// };
+			}
+
+			// var b1 = new Book("A", "SciFi");
+			// b1.DisplayBook("A", "SciFi");
+			// var b2 = new Book("B", "Novel");
+			// delete b2;
+			// b2.DisplayBook("B", "Novel");
+			// console.log(b2);
+
+			// var b1 = new Book("A", "SciFi");
+			// b1.DisplayBook();
+			// var b2 = new Book("B", "Novel");
+			// delete b2;
+			// b2.DisplayBook();
+			// console.log(b2);
+
+			var b1 = new Book("A", "SciFi");
+			b1.DisplayBook();
+			var b2 = new Book("B", "Novel");
+			b2.DeleteBook();
+			b2.DisplayBook();
+			console.log(b2);
+
+			//-------------------------------------------------------------------------------------
+
+			function Box(_books) {
+				this.books = _books;
+
+				this.DisplayAllBooks = function () {
+					for (var i = 0; i < this.books.length; i++) {
+						this.books[i].DisplayBook();
+					}
+				};
+				this.CountBooks = function () {
+					return this.books.length;
+				};
+				// this.DeleteBook = function (_name, _type) {
+				// 	delete this.books[_name];
+				// 	delete this.books[_type];
+				// };
+				this.DeleteBook = function (_name, _type) {
+					for (var i = 0; i < this.books.length; i++) {
+						if (this.books[i].name == _name && this.books[i].type == _type) {
+							// delete this.books[i].name;
+							// delete this.books[i].type;
+							this.books.splice(this.books.indexOf(this.books[i]), 1);
+						}
+					}
+				};
+				this.logBooks = function () {
+					console.log(this.books);
+				};
+			}
+
+			//-------------------------------------------------------------------------------------
+			var books = [
+				new Book("C", "Type1"),
+				new Book("D", "Type2"),
+				new Book("E", "Type3"),
+				new Book("F", "Type4"),
+				new Book("G", "Type5"),
+			];
+
+			var bx1 = new Box(books);
+			bx1.DisplayAllBooks();
+			// bx1.DisplayBook("F", "Type4");
+			console.log(bx1.CountBooks());
+
+			var bx2 = new Box(books);
+			bx2.DisplayAllBooks();
+			console.log("Before Deleting");
+			bx2.DeleteBook("F", "Type4");
+			console.log("After Deleting");
+			bx2.DisplayAllBooks();
+			console.log(bx2.CountBooks());
+			bx2.logBooks();
+		</script>
+	</body>
+</html>

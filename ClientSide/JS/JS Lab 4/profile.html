@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Profile Page</title>
+	</head>
+	<body>
+		<script>
+			var cookiePairs = document.cookie.trim().split(";");
+			var nameFromCookie = cookiePairs[0].split("=")[1];
+			var ageFromCookie = cookiePairs[1].split("=")[1];
+			var genderFromCookie = cookiePairs[2].split("=")[1];
+			var colorFromCookie = cookiePairs[3].split("=")[1];
+			document.cookie = `visit_count=${parseInt(cookiePairs[4].split("=")[1]) + 1}`;
+			var countFromCookie = cookiePairs[4].split("=")[1];
+
+			document.write(
+				`<img src='${genderFromCookie}.png' /><h2 style="display:inline;">Welcome <span style="color:${colorFromCookie};">${nameFromCookie}</span> you have visited this site <span style="color:${colorFromCookie};">${countFromCookie}</span> times</h2>`
+			);
+		</script>
+	</body>
+</html>

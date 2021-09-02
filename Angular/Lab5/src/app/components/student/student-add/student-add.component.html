@@ -1,0 +1,21 @@
+<div class="container">
+  <input
+    class="form-control"
+    [(ngModel)]="nstd.id"
+    type="text"
+    placeholder="Student ID"
+  />
+  <input
+    class="form-control"
+    [(ngModel)]="nstd.name"
+    type="text"
+    placeholder="Student Name"
+  />
+  <input
+    class="form-control"
+    [(ngModel)]="nstd.age"
+    type="text"
+    placeholder="Student Age"
+  />
+  <button class="btn btn-block btn-success" (click)="Save()">Add</button>
+</div>

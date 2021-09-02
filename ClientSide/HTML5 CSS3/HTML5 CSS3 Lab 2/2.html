@@ -1,0 +1,163 @@
+<html>
+	<head>
+		<title>HTML5 CSS3 Lab 2</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.main-container {
+			width: 70%;
+			height: 80%;
+			margin: 2rem auto;
+			padding: 2rem;
+			border: 3px solid rgb(0, 255, 64);
+			border-radius: 20px;
+			display: flex;
+			justify-content: space-between;
+			/* background: gradient(elipse); */
+			background: radial-gradient(white, lightyellow);
+			box-shadow: red 20px 20px 20px;
+		}
+		.main-container:hover {
+			transform: skewX(20deg);
+			transition: transform 1s;
+			/* transition-direction: alternate; */
+		}
+		.main-container:active {
+			transform: scale(0.5);
+			box-shadow: blue 20px 20px 20px;
+			transition: all 1s;
+		}
+		.paragraphs-container {
+			/* width: 33%; */
+			height: 100%;
+			flex-basis: 33%;
+			column-count: 3;
+			column-gap: 30px;
+			column-rule: 3px solid red;
+			overflow: auto;
+			/* overflow-y: hidden; */
+			font-size: 1.25rem;
+			text-align: center;
+			background: radial-gradient(ellipse at bottom, white, lightgreen);
+			border: 3px solid black;
+			border-radius: 20px;
+			padding: 1rem;
+		}
+		.paragraphs-container:hover {
+			text-decoration: underline;
+		}
+		.album-container {
+			/* width: 66%; */
+			flex-basis: 66%;
+			text-align: center;
+			overflow-y: scroll;
+			border: 3px solid blue;
+			border-radius: 20px;
+			column-count: 4;
+			/* column-gap: 10px; */
+			padding: 1rem;
+			background: radial-gradient(white, lightblue);
+		}
+		.album-container > img {
+			margin-bottom: 1rem;
+			border: 2px solid lightblue;
+			box-shadow: purple 7px 7px 10px;
+		}
+		.album-container > img:hover {
+			transform: scale(1.25);
+			box-shadow: yellow 7px 7px 10px;
+			transition: all 1s;
+		}
+		.album-container > img:active {
+			transform: scale(3);
+			box-shadow: red 7px 7px 10px;
+			transition: all 1s;
+			/* overflow: visible;
+			z-index: 2; */
+		}
+		@media screen and (max-width: 1200px) {
+			.main-container:hover {
+				transform: none;
+			}
+			.paragraphs-container {
+				/* column-count: 1; */
+				/* column-gap: 20px; */
+				column-rule: none;
+			}
+			.album-container {
+				column-count: 1;
+			}
+			img {
+				transform: rotate(45deg);
+				margin-bottom: 2rem;
+			}
+			img:active {
+				border: 2px dashed red;
+				transform: none;
+			}
+			mark {
+				background-color: blue;
+			}
+		}
+		/* @media screen and (max-width: 800px) {
+			.paragraphs-container {
+				column-count: 1;
+				column-gap: 20px;
+				column-rule: none;
+			}
+		} */
+		mark:hover {
+			background-image: linear-gradient(to top, yellow, red);
+		}
+		mark:not(:hover) {
+			background-color: red;
+			transition: background-color 1s;
+		}
+	</style>
+	<body>
+		<section class="main-container">
+			<div class="paragraphs-container">
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit amet tempora, quo recusandae suscipit
+				itaque quia obcaecati labore ad natus enim dignissimos eius ipsa et, impedit ea expedita voluptates
+				optio. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+				<mark
+					>facilis, quos praesentium at modi officia fugiat? Autem repellat cum aliquam, cumque natus
+					laboriosam repellendus molestiae iusto accusantium labore. Culpa, maiores. Lorem ipsum dolor sit
+					amet consectetur adipisicing elit. Sit illum ex velit culpa, labore aliquam in</mark
+				>
+				nostrum. Est nemo perferendis ex vitae. Nobis officia tempore saepe omnis? Voluptates, eaque quod! Lorem
+				ipsum dolor sit amet consectetur adipisicing elit. Molestias nostrum modi eaque amet minima reiciendis
+				culpa provident deleniti natus voluptate quas, illum nam deserunt. Ullam deleniti rem similique
+				asperiores maiores. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit amet tempora, quo
+				recusandae suscipit itaque quia obcaecati labore ad natus enim dignissimos eius ipsa et, impedit ea
+				expedita voluptates optio. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus facilis,
+				quos praesentium at modi officia fugiat? Autem repellat cum aliquam, cumque natus laboriosam repellendus
+				molestiae iusto accusantium labore. Culpa, maiores. Lorem ipsum dolor sit amet consectetur adipisicing
+				elit. Sit illum ex velit culpa, labore aliquam in nostrum. Est nemo perferendis ex vitae. Nobis officia
+				tempore saepe omnis? Voluptates, eaque quod! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Molestias nostrum modi eaque amet minima reiciendis culpa provident deleniti natus voluptate quas, illum
+				nam deserunt. Ullam deleniti rem similique asperiores maiores.
+			</div>
+			<div class="album-container"></div>
+		</section>
+		<script>
+			for (var i = 0; i < 32; i++) {
+				var img = document.createElement("img");
+				var albumContainer = document.getElementsByClassName("album-container")[0];
+
+				img.src = "./ffffff.png";
+				albumContainer.append(img);
+			}
+		</script>
+	</body>
+</html>
+<html>
+	<head>
+		<title>HTML5 CSS3 Lab 2</title>
+	</head>
+	<body></body>
+</html>

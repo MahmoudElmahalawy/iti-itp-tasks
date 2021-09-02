@@ -1,0 +1,83 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HTML5 CSS3 Lab 2</title>
+	</head>
+	<style>
+		div {
+			position: absolute;
+			left: 0%;
+			top: 10%;
+			width: 300px;
+			height: 200px;
+			background-color: orange;
+		}
+		div:hover {
+			transform: scale(1.1);
+			transition: transform 0.3s;
+		}
+		div:active {
+			animation: none;
+		}
+		.btn {
+			/* position: absolute;
+			bottom: 20%; */
+			border: none;
+			color: white;
+			background-color: royalblue;
+			padding: 1rem;
+			cursor: pointer;
+			margin-right: 20px;
+		}
+		@keyframes divAnimation {
+			0% {
+				top: 10%;
+				left: 0%;
+				background-color: orange;
+			}
+			25% {
+				top: 10%;
+				left: 40%;
+				background-color: green;
+			}
+			50% {
+				left: 40%;
+				top: 50%;
+				background-color: blue;
+			}
+			75% {
+				left: 0%;
+				top: 50%;
+				background-color: red;
+			}
+		}
+	</style>
+	<body>
+		<div onmouseover="pauseAnim()"></div>
+		<button class="btn" onclick="startAnim()">Start</button>
+		<button class="btn" onclick="stopAnim()">Stop</button>
+		<button class="btn" onclick="pauseUnpauseAnim()">Pause</button>
+		<script>
+			var isPaused = false;
+
+			function startAnim() {
+				document.getElementsByTagName("div")[0].style.animation = "divAnimation 4s linear infinite forwards";
+			}
+			function stopAnim() {
+				document.getElementsByTagName("div")[0].style.animation = "none";
+			}
+			function pauseUnpauseAnim() {
+				isPaused
+					? (document.getElementsByTagName("div")[0].style.animationPlayState = "running")
+					: (document.getElementsByTagName("div")[0].style.animationPlayState = "paused");
+				isPaused = !isPaused;
+			}
+			function pauseAnim() {
+				document.getElementsByTagName("div")[0].style.animationPlayState = "paused";
+				isPaused = true;
+			}
+		</script>
+	</body>
+</html>

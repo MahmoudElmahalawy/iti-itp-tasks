@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Lab 2 Task 1</title>
+		<script defer>
+			class Shape {
+				#dim1;
+				#dim2;
+				#color;
+				constructor(_dim1, _dim2, _color) {
+					this.#dim1 = _dim1;
+					this.#dim2 = _dim2;
+					this.#color = _color;
+					if (new.target === Shape) {
+						throw new TypeError("Shape is an abstract class, Cannot create an object of type Shape");
+					} else if (new.target === Rectangle || Triangle || Square) {
+						Shape.count++;
+					}
+					// if (this instanceof Shape) {
+					//     throw new Error("You can't create an object from abstract class")
+					// }
+				}
+				calcArea() {
+					return this.#dim1 * this.#dim2;
+				}
+				print() {
+					return `Dimension 1 = ${this.#dim1}, Dimension 2 = ${this.#dim2}, Shape color is ${
+						this.#color
+					} and Area = ${this.calcArea()}`;
+				}
+				static count = 0;
+				static countShapes() {
+					// this.count++;
+					return this.count;
+				}
+
+				get dim1() {
+					return this.#dim1;
+				}
+				get dim2() {
+					return this.#dim2;
+				}
+
+				set dim1(val) {
+					this.#dim1 = val;
+				}
+				set dim2(val) {
+					this.#dim2 = val;
+				}
+			}
+
+			class Rectangle extends Shape {
+				#dim3;
+				#dim4;
+				constructor(_dim1, _dim2, _dim3, _dim4, _color) {
+					super(_dim1, _dim2, _color);
+					this.#dim3 = _dim3;
+					this.#dim4 = _dim4;
+				}
+				print() {
+					return `${super.print()} Dimension 3 = ${this.#dim3}, Dimension 4 = ${this.#dim4}`;
+				}
+			}
+
+			class Square extends Rectangle {
+				constructor(_dim1, _dim2, _dim3, _dim4, _color) {
+					super(_dim1, _dim2, _dim3, _dim4, _color);
+				}
+			}
+
+			class Triangle extends Shape {
+				#dim3;
+
+				constructor(_dim1, _dim2, _dim3, _color) {
+					super(_dim1, _dim2, _color);
+					this.#dim3 = _dim3;
+				}
+				print() {
+					return `${super.print()} Dimension 3 = ${this.#dim3}`;
+				}
+			}
+
+			// sh1 = new Shape(1, 2, "red");
+			// sh2 = new Shape(3, 4, "green");
+			// sh3 = new Shape(5, 6, "yellow");
+
+			console.log("Shapes count = " + Shape.countShapes());
+
+			// console.log(sh3.calcArea());
+			// console.log(sh2.print());
+
+			let tri1 = new Triangle(7, 8, 9, "orange");
+
+			let rect1 = new Rectangle(4, 5, 6, 7, "blue");
+			console.log(rect1.print());
+
+			let sq1 = new Square(5, 5, 5, 5, "black");
+			console.log(sq1.print());
+
+			console.log("Shapes count = " + Shape.countShapes());
+		</script>
+	</head>
+	<body></body>
+</html>

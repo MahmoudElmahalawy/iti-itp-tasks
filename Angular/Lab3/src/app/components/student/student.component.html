@@ -1,0 +1,142 @@
+<div class="container">
+  <div *ngIf="students.length > 2" class="mt-5 w-50 mx-auto">
+    <p class="alert alert-secondary">
+      Students number is {{ students.length }}
+    </p>
+  </div>
+
+  <div class="text-center">
+    <button (click)="showAddBlock()" class="btn btn-success my-3">
+      {{ btnLabel }}
+    </button>
+  </div>
+
+  <div class="add-student-form mx-auto w-50" [hidden]="addFlag">
+    <div class="form-group my-2">
+      <label class="control-label">ID</label>
+      <input [(ngModel)]="newStudent.id" type="number" class="form-control" />
+    </div>
+    <div class="form-group my-2">
+      <label class="control-label">Name</label>
+      <input [(ngModel)]="newStudent.name" type="text" class="form-control" />
+    </div>
+    <div class="form-group my-2">
+      <label class="control-label">Age</label>
+      <input [(ngModel)]="newStudent.age" type="number" class="form-control" />
+    </div>
+    <div class="text-center my-3">
+      <button type="button" class="btn btn-success" (click)="addStudent()">
+        Save Student
+      </button>
+    </div>
+  </div>
+
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let student of students;
+          let i = index;
+          let o = odd;
+          let e = even
+        "
+        [ngClass]="{ 'bg-lightgrey': o }"
+      >
+        <td scope="row">{{ i + 1 }}</td>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          {{ student.age }}
+        </td>
+
+        <td class="actions">
+          <button
+            type="button"
+            class="btn btn-link me-2"
+            (click)="showStudent(student.id)"
+          >
+            <img src="../../../assets/info-icon.svg" width="24px" />
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary me-2"
+            (click)="editStudent(student.id)"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger me-2"
+            (click)="deleteStudent(i)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+
+  <!--EDIT STUDENT-->
+  <div class="edit-student-form mx-auto w-50" [hidden]="editFlag">
+    <div class="form-group my-2">
+      <label class="control-label">ID</label>
+      <input
+        [(ngModel)]="selectedStudent.id"
+        type="number"
+        class="form-control"
+        disabled
+      />
+    </div>
+    <div class="form-group my-2">
+      <label class="control-label">Name</label>
+      <input
+        [(ngModel)]="selectedStudent.name"
+        type="text"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group my-2">
+      <label class="control-label">Age</label>
+      <input
+        [(ngModel)]="selectedStudent.age"
+        type="number"
+        class="form-control"
+      />
+    </div>
+    <div class="text-center my-3">
+      <button type="button" class="btn btn-success" (click)="saveEdit()">
+        Confirm Edit
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="details alert alert-secondary w-50 mx-auto"
+    [hidden]="detailsFlag"
+  >
+    <h4 class="alert-heading">
+      Student Details
+      <button
+        type="button"
+        class="close btn btn-outline-secondary float-end"
+        (click)="hideDetails()"
+      >
+        <span>&times;</span>
+      </button>
+    </h4>
+
+    <div>Student ID: {{ detailStudent.id }}</div>
+    <div>Student Name: {{ detailStudent.name }}</div>
+    <div>Student Age: {{ detailStudent.age }}</div>
+  </div>
+</div>

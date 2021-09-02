@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>JS Lab 5 Task 2</title>
+		<style>
+			body {
+				font-family: Verdana;
+			}
+			.container {
+				margin: 2rem auto;
+				text-align: center;
+				width: 800px;
+				border: 2px solid black;
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+			table {
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			th {
+				background-color: firebrick;
+				color: whitesmoke;
+			}
+			tr:nth-child(even) {
+				background-color: lightgrey;
+			}
+			input[type="button"],
+			input[type="text"] {
+				margin-bottom: 1rem;
+				height: 50px;
+				border: none;
+			}
+			input[type="text"] {
+				width: 70%;
+				box-shadow: 0.2em 0.1em 0.5em rgba(0, 0, 0, 0.3);
+			}
+			input[type="button"] {
+				width: 50px;
+				color: whitesmoke;
+				background-color: firebrick;
+				cursor: pointer;
+			}
+			.deleteBtn {
+				cursor: pointer;
+				font-weight: bold;
+			}
+			.task__field {
+				width: 60%;
+			}
+			.selected {
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>To Do Organizer</h1>
+			<input type="text" placeholder="Enter Task Name" id="taskTextInput" />
+			<input type="button" value="Add" id="taskAddBtn" />
+			<table>
+				<tr>
+					<th>Done</th>
+					<th class="task__field">Task</th>
+					<th>Delete</th>
+				</tr>
+			</table>
+		</div>
+
+		<script>
+			var taskTextInput = document.getElementById("taskTextInput");
+			var taskAddBtn = document.getElementById("taskAddBtn");
+			var tasksTable = document.getElementsByTagName("table")[0];
+			var tasksCheckboxes = document.querySelectorAll("input[type='checkbox']");
+
+			taskAddBtn.addEventListener("click", addTask);
+			addListenersToChkbxsAndRows();
+
+			function addListenersToChkbxsAndRows() {
+				tasksCheckboxes = document.querySelectorAll("input[type='checkbox']");
+				for (var box = 0; box < tasksCheckboxes.length; box++) {
+					tasksCheckboxes[box].addEventListener("click", addLineThrough);
+					tasksCheckboxes[box].parentElement.nextElementSibling.nextElementSibling.addEventListener(
+						"click",
+						deleteTask
+					);
+				}
+			}
+			function addTask() {
+				if (taskTextInput.value) {
+					var taskText = taskTextInput.value;
+					var taskRow = document.createElement("tr");
+					taskRow.innerHTML = `<td><input type="checkbox" name="selectedTask"></option></td>
+											<td>${taskText}</td>
+											<td class="deleteBtn">X</td>`;
+					tasksTable.appendChild(taskRow);
+					addListenersToChkbxsAndRows();
+				}
+			}
+			function addLineThrough() {
+				if (this.parentElement.nextElementSibling.classList.contains("selected")) {
+					this.parentElement.nextElementSibling.classList.remove("selected");
+				} else {
+					this.parentElement.nextElementSibling.classList.add("selected");
+				}
+			}
+			function deleteTask() {
+				if (confirm("Are you sure you want to delete this task?")) {
+					// var i = Auction.auctions.length
+					// while (i--) {
+					// 	...
+					// 	if (...) {
+					// 		Auction.auctions.splice(i, 1);
+					// 	}
+					// }
+					this.parentElement.remove();
+					var selectedTask = [];
+					document.getElementsByName("selectedTask").forEach(function (item) {
+						if (item.checked) {
+							selectedTask.push(item);
+						}
+					});
+					console.log(selectedTask);
+					//Filter method
+					selectedTask.forEach(function (item) {
+						item.parentElement.parentElement.remove();
+					});
+					// for (var checkedLi = 0; checkedLi < selectedTask.length; checkedLi++){
+					// 	if (selectedTask[checkedLi].checked) {
+					// 		selectedTask[checkedLi].parentElement.parentElement.remove();
+					// 	}
+					// }
+					// 	var i = selectedTask.length;
+					// 	while (i--) {
+					// 		if (selectedTask[i].checked) {
+					// 			selectedTask[i].parentElement.parentElement.remove();
+					// 		}
+				}
+			}
+
+			for (var i = 0; i < 5; i++) {
+				var taskRow = document.createElement("tr");
+				taskRow.innerHTML = `<td><input type="checkbox" name="selectedTask"></option></td>
+											<td>task ${i}</td>
+											<td class="deleteBtn">X</td>`;
+				tasksTable.appendChild(taskRow);
+				addListenersToChkbxsAndRows();
+			}
+		</script>
+	</body>
+</html>

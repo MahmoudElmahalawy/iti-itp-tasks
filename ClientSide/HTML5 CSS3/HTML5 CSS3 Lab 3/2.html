@@ -1,0 +1,101 @@
+<html lang="en">
+	<head>
+		<title>HTML5 CSS3 Lab 3 Task 2</title>
+		<style>
+			.container {
+				margin: 5rem auto;
+				text-align: center;
+				border: 5px solid grey;
+				width: fit-content;
+				padding: 0 2rem;
+			}
+			section {
+				width: 1200px;
+				height: 130px;
+				/* height: 180px; */
+				/* float: left; */
+				margin: 50px auto;
+				padding: 10px;
+				border: 2px solid black;
+				text-align: center;
+			}
+			img {
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+				border: 3px solid lightgrey;
+				transition: all 0.5s ease-in-out;
+			}
+			img:hover {
+				transform: scale(1.5) rotate(360deg);
+			}
+		</style>
+		<script>
+			window.addEventListener("load", function () {
+				/*allimages = document.images;*/
+				/*allimages = this.document.getElementsByClassName('iti');*/
+				allimages = this.document.querySelectorAll(".iti");
+
+				for (var i = 0; i < allimages.length; i++) {
+					allimages[i].addEventListener("dragstart", startdrag);
+					allimages[i].addEventListener("dragend", enddrag);
+				}
+				// bottom plus register events
+				bottom = this.document.getElementById("bottom");
+				bottom.addEventListener("drop", dropped);
+				bottom.addEventListener("dragenter", enterdrag);
+				bottom.addEventListener("dragover", leavedrag);
+				//top plus register events
+				top = document.getElementById("top");
+				top.addEventListener("dragleave", leavedrag);
+			}); //end of load
+			function startdrag(e) {
+				// console.log(e.target.outerHTML);
+				//console.log(e);
+				e.dataTransfer.setData("myimg", e.target.outerHTML);
+			}
+			function enddrag(e) {
+				e.preventDefault();
+				e.target.style.display = "none";
+				var imgsInTop = document.querySelectorAll("#top img");
+				var count = 0;
+				for (var i = 0; i < imgsInTop.length; i++) {
+					if (imgsInTop[i].style.display == "none") {
+						count++;
+					}
+				}
+				if (count == imgsInTop.length) document.getElementById("top").innerHTML += "<h2>Empty</h2>";
+			}
+			function dropped(e) {
+				e.preventDefault();
+				bottom.innerHTML += e.dataTransfer.getData("myimg");
+			}
+			function enterdrag(e) {
+				e.preventDefault();
+				bottom.style.backgroundColor = "pink";
+			}
+			function overdrag(e) {
+				e.preventDefault();
+			}
+			function leavedrag(e) {
+				e.preventDefault();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<section id="top">
+				<img class="iti" src="UP/1.jpg" />
+				<img class="iti" src="UP/2.jpg" />
+				<img class="iti" src="UP/3.jpg" />
+				<img class="iti" src="UP/4.jpg" />
+				<img class="iti" src="UP/5.jpg" />
+				<img class="iti" src="UP/6.jpg" />
+				<img class="iti" src="UP/7.jpg" />
+				<img class="iti" src="UP/8.jpg" />
+				<img class="iti" src="UP/9.jpg" />
+			</section>
+			<section class="target-section" id="bottom"></section>
+		</div>
+	</body>
+</html>

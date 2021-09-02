@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Page2</title>
+	<style>
+		td {
+			margin: auto;
+			text-align: center;
+			vertical-align: middle;
+			height: 40px;
+		}
+
+		th {
+			color: white;
+			background-color: red;
+			height: 40px;
+		}
+
+		tr:nth-child(even) {
+			background-color: bisque;
+		}
+
+		h1 {
+			position: absolute;
+			top: 7%;
+			left: 40%;
+		}
+
+		#myInput {
+			position: absolute;
+			width: 40%;
+			height: 30px;
+			top: 18%;
+			left: 25%;
+		}
+
+		#btin {
+			position: absolute;
+			height: 40px;
+			top: 17.6%;
+			left: 66%;
+			width: 70px;
+			border-radius: 5px;
+			color: white;
+			background-color: rgb(30, 30, 85);
+		}
+	</style>
+</head>
+
+<body>
+	<h1>To Do Organizer</h1>
+	<input id="myInput" type="text" placeholder="Enter Your Task" />
+	<input id="btin" type="button" name="add" value="Add" onclick="newElement();" />
+	<table style="text-align: center; width: 70%; position: absolute; top: 25%; left: 13%">
+		<tr>
+			<th>Done</th>
+			<th>Task</th>
+			<th>Delete</th>
+		</tr>
+	</table>
+	<script>
+		var j = 1;
+
+		function newElement() {
+			createdtr = document.createElement("tr");
+			createdtr.id = j;
+			console.log(j);
+			j++;
+			createdtd1 = document.createElement("td");
+			var li1 = document.createElement("li");
+			var check = document.createElement("input");
+			check.type = "checkbox";
+			check.className = "check";
+			li1.appendChild(check);
+			createdtd1.appendChild(li1);
+
+			createdtd2 = document.createElement("td");
+			var li2 = document.createElement("li");
+			var inputValue = document.getElementById("myInput").value;
+			var t = document.createTextNode(inputValue);
+			t.className = "checked";
+			li2.appendChild(t);
+			if (inputValue === "") {
+				alert("You must write something!");
+			} else {
+				createdtd2.appendChild(li2);
+			}
+			document.getElementById("myInput").value = "";
+
+			createdtd3 = document.createElement("td");
+			var li3 = document.createElement("li");
+			var image = document.createElement("img");
+			image.src = "re.png";
+			image.width = image.height = 15;
+			image.className = "close";
+			li3.appendChild(image);
+			createdtd3.appendChild(li3);
+
+			createdtr.appendChild(createdtd1);
+			createdtr.appendChild(createdtd2);
+			createdtr.appendChild(createdtd3);
+			document.getElementsByTagName("table")[0].appendChild(createdtr);
+
+			var close = document.getElementsByClassName("close");
+			var i;
+			for (i = 0; i < close.length; i++) {
+				close[i].onclick = function () {
+					if (confirm("Are you sure you want to delete this task?")) {
+						this.parentElement.parentElement.parentElement.style.display = "none";
+
+						var selectedLis = document.getElementsByClassName("selected");
+						for (var i = 0; i < selectedLis.length; i++) {
+							selectedLis[i].parentElement.style.display = "none";
+						}
+					}
+				};
+			}
+
+			var checkArray = document.getElementsByClassName("check");
+			var i;
+			for (i = 0; i < checkArray.length; i++) {
+				checkArray[i].onclick = function () {
+					this.parentElement.parentElement.nextElementSibling.style.textDecoration = "line-through";
+					this.parentElement.parentElement.nextElementSibling.classList.add("selected");
+				};
+			}
+		}
+	</script>
+</body>

@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>JS Lab 2 Task 3</title>
+	</head>
+	<body>
+		<script>
+			var arr = [];
+			var sumRes = 0,
+				mulRes = 1,
+				divRes = 1;
+
+			for (var i = 0; i < 3; i++) {
+				var userInput = parseInt(prompt("Enter a number"));
+				arr[i] = userInput;
+			}
+
+			// var sumString = arr.join("+");
+
+			// sumRes = eval(arr.join("+"));
+			// sumRes = eval(arr.join("*"));
+			// sumRes = eval(arr.join("/"));
+
+			document.write("<h1>Adding -- Multiplying -- Dividing</p>");
+			document.write("<hr>");
+			document.write(
+				"Sum of the 3 values " +
+					arr.join(" + ") +
+					" = " +
+					eval(arr.join("+")) +
+					"<br>"
+			);
+
+			document.write(
+				"Multiplication of the 3 values " +
+					arr.join(" * ") +
+					" = " +
+					eval(arr.join("*")) +
+					"<br>"
+			);
+
+			document.write(
+				"Division of the 3 values " +
+					arr.join(" / ") +
+					" = " +
+					eval(arr.join("/")) +
+					"<br>"
+			);
+		</script>
+	</body>
+</html>

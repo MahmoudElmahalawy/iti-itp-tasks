@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Lab 2 Task 2</title>
+		<script defer>
+			//Create constant project anonymous object after taking properties names and values from user (using
+			// object literals ) Note: names are projectID , projectName ,duration and printData which console.log all
+			// project data
+
+			// let titleParameter = "title";
+			// let titleValue = "value";
+			let projectArr = [];
+			var i = 0;
+			do {
+				var projectPropName = prompt("Enter project's property name");
+				var projectPropValue = prompt("Enter project's property value");
+				projectArr[i] = {
+					[projectPropName]: projectPropValue,
+				};
+				i++;
+			} while (projectPropName);
+			projectArr.pop();
+
+			var projectObj = {};
+			for (var i = 0; i < projectArr.length; i++) {
+				projectObj[Object.keys(projectArr[i])[0]] = Object.values(projectArr[i])[0];
+			}
+
+			console.log(projectObj);
+
+			let project = {
+				// [titleParameter]: titleValue,
+				...projectObj,
+				printData() {
+					for (i in project) {
+						console.log(`${i} => ${project[i]}`);
+					}
+				},
+			};
+
+			// let projectID = prompt("Enter Project's ID");
+			// let projectName = prompt("Enter Project's Name");
+			// let duration = prompt("Enter Project's Duration");
+
+			// project["projectID"] = projectID;
+			// project["projectName"] = projectName;
+			// project["duration"] = duration;
+
+			console.log(project);
+			console.log(project.printData());
+
+			({ projectID, projectName, duration } = project);
+		</script>
+	</head>
+	<body></body>
+</html>

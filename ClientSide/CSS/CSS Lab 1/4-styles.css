@@ -1,0 +1,77 @@
+body {
+    font-family: calibri;
+}
+
+.headers__table {
+    margin: 2rem auto;
+    text-align: center;
+    /* border: 2px solid black; */
+    border-collapse: collapse;
+    border: 2px solid black;
+    border-spacing: 0;
+}
+
+/* th {
+    border-bottom: 2px solid black;
+} */
+
+/* td {
+    border: 1px solid black;
+
+} */
+
+tr {
+    
+    border-bottom: 1px solid black;
+
+}
+
+.headers__table td {
+    width: 150px;
+    padding: 0;
+    display: inline-block;
+}
+
+.headers {
+    /* border-bottom: 2px solid black; */
+    color: white;
+    background-color: #4f81bd;
+}
+
+.headers > td {
+    padding: 1rem;
+}
+
+td.full-width-cell {
+    width: 500px;
+    color: darkgray;
+    padding: 1rem 0 0;
+}
+
+td.edit-cell {
+    /* width: 50px; */
+    color: darkgray;
+    background-color: white;
+}
+
+td.delete-cell {
+    /* width: 50px; */
+    color: darkgray;
+    background-color: white;
+}
+
+/* td.delete-cell, td.yes-no-cell {
+    width: 90px;
+} */
+
+.team-a-row {
+    background-color: #B8CCE4;
+}
+
+.team-b-row {
+    background-color: #DBE5F1;
+}
+
+.inner-table {
+    width: 700px;
+}

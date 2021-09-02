@@ -1,0 +1,5 @@
+a- create your own custome event and dispatch it 
+b- throw new error object from function sum() if user pass any string values to function
+c- try to handle thrown errors using try catch finally clauses
+d- try to get summation from sum function if you write the following call
+	sum("Nasr",{ID:100,City:"Cairo"},100,200,undefined,null)

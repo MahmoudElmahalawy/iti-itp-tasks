@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>HTML5 CSS3 Lab 3 Task 3</title>
+		<style>
+			body {
+				font-family: verdana;
+			}
+			section {
+				border: 2px solid black;
+				/* border-radius: 20px; */
+			}
+
+			#mainwrapper {
+				display: flex;
+				flex-direction: column;
+				width: 80%;
+				margin: 20px auto;
+				padding: 10px;
+				/* box-shadow: #fbc02d 10px 10px 80px inset; */
+			}
+
+			#mainwrapper > section {
+				margin: 10px;
+			}
+
+			#topwrapper,
+			#mapdetailswrapper {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			input {
+				margin: 20px;
+				height: 40px;
+				width: 150px;
+				border: 1px solid black;
+				/* border-radius: 10px; */
+				background-color: #0655f9;
+				color: white;
+				transition: all 0.5s;
+			}
+
+			input:hover {
+				transform: scale(1.25) skew(15deg);
+				/* border-radius: 0 10px; */
+			}
+
+			#mapdetailswrapper {
+				height: 600px;
+			}
+
+			#details {
+				display: none;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				border: 2px solid black;
+				/* border-radius: 10px; */
+				/* width: 600px; */
+				/* height: 200px; */
+				text-align: center;
+				/* background: -webkit-radial-gradient(ellipse, #ffeb3b, #558b2f, #303f9f); */
+			}
+
+			#details > p {
+				background-color: #b8d2ff;
+				border: 1px solid black;
+				width: 70%;
+				padding: 0;
+				margin: 2px;
+				font-weight: bold;
+			}
+
+			h3 {
+				padding: 0;
+				margin: 0;
+			}
+
+			#map {
+				display: none;
+				width: 100%;
+				height: 100%;
+				border: none;
+				text-align: center;
+				color: firebrick;
+			}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB90FxtYG_ybAYXGkz0ybkmkboE2nEbezI"></script>
+		<script>
+			window.addEventListener("load", function () {
+				displayMap = document.getElementsByTagName("input")[0];
+				map = document.getElementById("map");
+				detailsSection = document.getElementById("details");
+
+				latP = document.getElementsByTagName("p")[0];
+				lonP = document.getElementsByTagName("p")[1];
+				accP = document.getElementsByTagName("p")[2];
+				timeP = document.getElementsByTagName("p")[3];
+
+				displayMap.addEventListener("click", function () {
+					if (navigator.geolocation) {
+						map.style.display = "flex";
+						detailsSection.style.display = "none";
+						navigator.geolocation.getCurrentPosition(getPosition, errorHandler);
+					} else {
+						map.innerText = "Please, update your browser and try again";
+					}
+				}); // end of display map
+
+				detailsBtn = document.getElementsByTagName("input")[1];
+
+				detailsBtn.addEventListener("click", function () {
+					if (navigator.geolocation) {
+						map.style.display = "none";
+						detailsSection.style.display = "flex";
+						navigator.geolocation.getCurrentPosition(showDetails, errorHandler);
+					} else {
+						details.innerText = "Please, update your browser and try again";
+					}
+				}); // end of display details
+			}); //end of load
+
+			function getPosition(position) {
+				lat = position.coords.latitude;
+				lon = position.coords.longitude;
+
+				var location = new google.maps.LatLng(lat, lon);
+
+				var mapspecs = {
+					center: location,
+					zoom: 15,
+				};
+
+				new google.maps.Map(map, mapspecs);
+			}
+
+			function errorHandler(error) {
+				map.style.display = "block";
+				detailsSection.style.display = "none";
+				// console.log(error.PERMISSION_DENIED);
+				switch (error.code) {
+					case error.PERMISSION_DENIED:
+						map.innerText = "PERMISSION_DENIED You have to give permisson to access your location";
+						// alert("You have to give permisson to access your location");
+						break;
+					case error.POSITION_UNAVAILABLE:
+						// arguments;
+						map.innerText = "POSITION_UNAVAILABLE";
+						break;
+					case error.TIME_OUT:
+						map.innerText = "TIME_OUT";
+						break;
+					default:
+						map.innerText = "";
+						break;
+				}
+			}
+
+			function showDetails(position) {
+				detailsSection.style.display = "flex";
+				latP.innerText = position.coords.latitude;
+				lonP.innerText = position.coords.longitude;
+				accP.innerText = position.coords.accuracy;
+				timeP.innerText = new Date(position.timestamp);
+			}
+		</script>
+	</head>
+	<body>
+		<section id="mainwrapper">
+			<section id="topwrapper">
+				<input type="button" value="Display Map" />
+				<input type="button" value="Detailed Information" />
+			</section>
+			<section id="mapdetailswrapper">
+				<section id="map"></section>
+				<section id="details">
+					<h3>Latitude (degree)</h3>
+					<p></p>
+					<h3>Longitude (degree)</h3>
+					<p></p>
+					<h3>Accuracy (m)</h3>
+					<p></p>
+					<h3>TimeStamp (Current Time and Date)</h3>
+					<p></p>
+				</section>
+			</section>
+		</section>
+	</body>
+</html>

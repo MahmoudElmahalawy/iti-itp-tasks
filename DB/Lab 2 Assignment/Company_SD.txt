@@ -1,0 +1,63 @@
+--1
+select dnum, dname, concat(fname, ' ', lname) "Manager's Name"
+from Departments inner join Employee
+on MGRSSN = SSN
+
+
+--2
+select dname, pname
+from Departments d inner join Project p
+on d.Dnum = p.Dnum
+
+
+--3
+select essn, Dependent_name, concat(fname, ' ', lname) "Employee"
+from Dependent left outer join Employee
+on essn = ssn
+
+
+--4
+select pnumber, pname, plocation, city
+from Project
+where city in ('Cairo', 'Alex')
+
+
+--5
+select * from project
+where pname like 'a%'
+
+
+--6
+select concat(fname, ' ', lname) "Employee" from employee
+where dno = 30 and salary between 1000 and 2000
+
+
+--7
+select concat(e.fname, ' ', e.lname) "Employee", e.superssn
+from employee e inner join employee sv
+on e.superssn = sv.ssn
+where concat(sv.fname, ' ', sv.lname) = 'Kamel Mohamed'
+
+
+--8
+select concat(fname, ' ', lname) as Full_Name, pname
+from employee
+inner join works_for on ssn = essn
+inner join project on pno = pnumber
+order by pname
+
+
+--9
+select concat(fname, ' ', lname) as Full_Name, pname, dnum
+from employee
+inner join works_for on ssn = essn
+inner join project on pno = pnumber
+order by dnum, lname, fname
+
+
+--10
+select pnumber, city, dname, lname as Manager, address, bdate
+from project p
+inner join departments d on p.dnum = d.dnum
+inner join employee e on d.mgrssn = e.ssn
+where p.city = 'Cairo'

@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>JS Lab 3 Task 4</title>
+		<style>
+			input {
+				margin-bottom: 1rem;
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="profile.html">
+			<label for="name">Enter your name</label>
+			<input type="text" name="name" id="userName" />
+			<br />
+			<label for="age">Enter your age</label>
+			<input type="number" name="age" id="userAge" />
+			<br />
+
+			<input type="radio" name="gender" value="male" id="male" />
+			<label for="male"><img src="male.png" alt="Male Illustration" /></label>
+
+			<input type="radio" name="gender" value="female" id="female" />
+			<label for="female"><img src="female.png" alt="Female Illustration" /></label>
+			<br />
+			<label for="color">Select your favourite color</label>
+			<select name="color" id="userColor">
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+			</select>
+			<br />
+			<input type="button" value="Register" id="sendData" />
+		</form>
+		<script>
+			var sendDataBtn = document.getElementById("sendData");
+
+			function sendData() {
+				// var userGender = document.getElementById("male").checked
+				// 	? document.getElementById("male").value
+				// 	: "" || document.getElementById("female").checked
+				// 	? document.getElementById("female").value
+				// 	: "";
+
+				if (document.getElementById("male").checked) {
+					var userGender = "male";
+				} else if (document.getElementById("female").checked) {
+					var userGender = "female";
+				}
+				var userName = document.getElementById("userName").value;
+				var userAge = document.getElementById("userAge").value;
+				var userColor =
+					document.getElementById("userColor").options[document.getElementById("userColor").selectedIndex]
+						.value;
+				if (!userName || !userAge || !userGender) {
+					alert("Enter user name, age and gender");
+					return false;
+				} else {
+					document.cookie = `user_name=${userName}`;
+					document.cookie = `user_age=${userAge}`;
+					document.cookie = `user_gender=${userGender}`;
+					document.cookie = `user_color=${userColor}`;
+					document.cookie = "visit_count=1";
+
+					window.open("profile.html", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500");
+				}
+			}
+
+			sendDataBtn.addEventListener("click", sendData);
+		</script>
+	</body>
+</html>

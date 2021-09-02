@@ -1,0 +1,14 @@
+@mixin p-style($bg-color, $border-style) {
+	background-color: $bg-color;
+	border: 2px $border-style black;
+}
+
+.p-cyan {
+	@include p-style(cyan, dotted);
+}
+.p-red {
+	@include p-style(red, solid);
+}
+.p-green {
+	@include p-style(green, solid);
+}

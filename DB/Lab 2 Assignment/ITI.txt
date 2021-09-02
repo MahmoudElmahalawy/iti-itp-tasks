@@ -1,0 +1,32 @@
+--1
+select st.*, ins_name as Supervisor
+from student st
+inner join instructor on st.st_super = ins_id
+
+
+--2
+select c.*, top_name
+from course c
+inner join topic t on c.top_id = t.top_id
+
+
+--3
+select ins_name, Evaluation, Crs_Name, Top_Name
+from Instructor ins 
+inner join Ins_Course insc on ins.ins_id = insc.ins_id 
+inner join course c on insc.Crs_Id = c.Crs_Id 
+inner join topic t on c.Top_Id = t.Top_Id
+where Evaluation is not null and Top_Name = 'Web'
+
+
+--4
+select d.*, ins_name
+from department d
+left outer join instructor i on i.dept_id = d.dept_id
+
+
+--5
+select concat(st_fname, ' ', st_lname) as 'Student', crs_name as 'Course', grade
+from student st
+inner join stud_course stc on st.st_id = stc.st_id
+inner join course c on stc.crs_id = c.crs_id

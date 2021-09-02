@@ -1,0 +1,30 @@
+<div class="container">
+  <button class="btn btn-primary btn-block" (click)="Load()">load</button>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of departments">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>
+          <a routerLink="/department/details/{{ item.id }}" class="btn btn-link"
+            >Details</a
+          >
+          <a routerLink="/department/edit/{{ item.id }}" class="btn btn-link"
+            >Edit</a
+          >
+          <button class="btn btn-danger" (click)="Delete(item.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

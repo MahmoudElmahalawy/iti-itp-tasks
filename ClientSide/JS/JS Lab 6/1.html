@@ -1,0 +1,144 @@
+<html>
+	<head>
+		<title>JS Lab 6 Task 1</title>
+		<style>
+			.container {
+				width: 750px;
+				margin: 2rem auto;
+				padding: 1rem;
+				background-color: #bbb;
+				height: auto;
+			}
+			.container p {
+				font-size: 1.5rem;
+				background-color: #ddd;
+				padding: 1rem;
+				text-indent: 50px;
+			}
+			h2 {
+				display: inline-block;
+			}
+			input[type="text"] {
+				margin-left: 50px;
+			}
+			span {
+				background-color: gold;
+			}
+			#newsInput,
+			#searchInput {
+				margin-top: 20px;
+				width: 300px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h2>News Type:</h2>
+			<input type="radio" name="newsType" id="sport" value="Sport" />
+			<label for="sport">Sport</label>
+			<input type="radio" name="newsType" id="social" value="Social" />
+			<label for="social">Social</label>
+			<input type="radio" name="newsType" id="politics" value="Politics" />
+			<label for="politics">Politics</label>
+			<input type="text" name="newsInput" id="newsInput" placeholder="Add Here" />
+			<input type="button" value="Add" id="addNewsBtn" /><br />
+			<label for="searchInput">Search:</label>
+			<input type="text" name="searchInput" id="searchInput" />
+		</div>
+		<script>
+			var newsTypes = document.getElementsByName("newsType");
+			var newsType;
+			var newsInput = document.getElementById("newsInput");
+			var addNewsBtn = document.getElementById("addNewsBtn");
+			var newsContainer = document.getElementsByClassName("container")[0];
+			var searchInput = document.getElementById("searchInput");
+
+			var colors = ["red", "green", "blue"];
+			var testNewsText =
+				"Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, ducimus? Dignissimos officia dolor dolores quod ducimus praesentium ad rerum iure sed, necessitatibus delectus quidem ab est consequatur iusto, voluptate doloremque.";
+
+			// for (var type = 0; type < newsTypes.length; type++) {
+			// 	newsTypes[type].addEventListener("click", getSelectedType);
+			// }
+			newsTypes.forEach(function (type) {
+				type.addEventListener("click", getSelectedType);
+			});
+			addNewsBtn.addEventListener("click", addNews);
+			searchInput.addEventListener("keyup", searchForInput);
+
+			function getSelectedType() {
+				newsTypes.forEach(function (type) {
+					if (type.checked) {
+						newsType = type;
+					}
+				});
+			}
+
+			function addNews() {
+				if (newsType && newsInput.value) {
+					var color;
+					var newsText = newsInput.value;
+					var newsContainerDiv = document.createElement("div");
+
+					switch (newsType.value) {
+						case "Sport":
+							color = colors[0];
+							break;
+						case "Social":
+							color = colors[1];
+							break;
+						case "Politics":
+							color = colors[2];
+							break;
+					}
+
+					newsContainerDiv.innerHTML = `<p style="color:${color}">${newsText}</p>`;
+					// newsContainerDiv.appendChild(newsTextNode);
+					newsContainer.appendChild(newsContainerDiv);
+				}
+			}
+
+			function searchForInput() {
+				var term = searchInput.value;
+				var newsList = newsContainer.getElementsByTagName("p");
+				Array.from(newsList).forEach(function (news) {
+					// var context = newsContainerDiv.firstElementChild.textContent;
+					if (news.textContent.toLowerCase().indexOf(term) != -1) {
+						news.style.display = "block";
+					} else {
+						news.style.display = "none";
+					}
+				});
+			}
+
+			// var searchForReg;
+			// function searchForInput() {
+			// 	var searchForReg = new RegExp(searchInput.value + "(?!([^<]+)?<)", "gi");
+			// 	// var result = newsContainer.innerHTML.replace(searchForReg, `<span></span>`);
+			// 	// newsContainer.innerText = newsContainer.innerText.replace(searchForReg, `<span>xxxx</span>`);
+			// 	// console.log(searchForReg);
+			// 	// console.log(searchForReg.exec(newsContainer.innerText));
+			// 	// console.log(result);
+
+			// 	var newsP = document.getElementsByTagName("p");
+			// 	for (var p = 0; p < newsP.length; p++) {
+			// 		newsP[p].innerHTML = newsP[p].innerHTML.replace(
+			// 			searchForReg,
+			// 			'<b style="background-color:#ff0;font-size:100%">$&</b>'
+			// 		);
+			// 	}
+			// 	// newsContainer.innerHTML = newsContainer.innerHTML.replace(
+			// 	// 	searchForReg,
+			// 	// 	'<b style="background-color:#ff0;font-size:100%">$&</b>'
+			// 	// );
+			// }
+
+			for (var i = 0; i < 3; i++) {
+				var testNews = document.createElement("div");
+				testNews.innerHTML = `<p style="color:${colors[i]}">${testNewsText}</p>`;
+				newsContainer.appendChild(testNews);
+			}
+		</script>
+	</body>
+</html>

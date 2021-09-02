@@ -1,0 +1,166 @@
+<html lang="en">
+	<head>
+		<title>Canvas API Task</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			#toolbar {
+				position: fixed;
+				top: 0;
+				background-color: #2f2f2f;
+				color: white;
+				font: bold 15px tahoma;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				padding: 1rem;
+			}
+			#radiusbar {
+				border: 2px solid yellow;
+				width: 15rem;
+				padding: 1rem;
+			}
+			.incredecre,
+			#radiusvalue,
+			#savebtn {
+				width: 30px;
+				/* height: 50px; */
+				text-align: center;
+				display: inline-block;
+				border: 2px solid yellow;
+				/* background-color: #fff; */
+				/* border-radius: 50%; */
+				margin-left: 1rem;
+			}
+			#savebtn {
+				width: auto;
+				padding: 0.5rem;
+			}
+			.incredecre:hover,
+			#savebtn:hover {
+				cursor: pointer;
+			}
+			#savebtn {
+				margin-left: 15rem;
+			}
+			#colorsbar {
+				border: 2px solid yellow;
+				width: 600px;
+				margin-left: 3rem;
+				padding: 1rem;
+				display: flex;
+				justify-content: space-around;
+			}
+			.colors {
+				width: 2.5rem;
+				height: 2.5rem;
+			}
+			.active {
+				border: 2px solid white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="toolbar">
+			<div id="radiusbar">
+				<label for="radius">Radius</label>
+				<span id="radiusvalue">5</span>
+				<span id="incre" class="incredecre">+</span>
+				<span id="decre" class="incredecre">-</span>
+			</div>
+			<div id="savebar">
+				<span id="savebtn">Save</span>
+			</div>
+			<div id="colorsbar">
+				<div class="colors" style="background-color: red"></div>
+				<div class="colors" style="background-color: blue"></div>
+				<div class="colors" style="background-color: green"></div>
+				<div class="colors" style="background-color: orange"></div>
+			</div>
+		</div>
+		<canvas id="mycanvas" style="display: block"> Sorry, Update your browser and try again! </canvas>
+		<script>
+			window.addEventListener("load", doitfirst);
+			function doitfirst() {
+				mycanvas = document.getElementById("mycanvas");
+				mycontext = mycanvas.getContext("2d");
+				mycanvas.width = window.innerWidth;
+				mycanvas.height = window.innerHeight;
+
+				incre = document.getElementById("incre");
+				decre = document.getElementById("decre");
+				radiusvalue = document.getElementById("radiusvalue");
+
+				allcolors = document.querySelectorAll(".colors");
+				for (var i = 0; i < allcolors.length; i++) {
+					allcolors[i].addEventListener("click", changecolor);
+					if (allcolors[i].style.backgroundColor == localStorage.getItem("selectedcolor")) {
+						allcolors[i].className += " active ";
+						mycontext.fillStyle = allcolors[i].style.backgroundColor;
+					}
+				}
+
+				savebtn = document.getElementById("savebtn");
+
+				isdrawable = false;
+				radius = 5;
+				mycanvas.addEventListener("mousemove", drawcircle);
+				mycanvas.addEventListener("mousedown", enabledrawing);
+				mycanvas.addEventListener("mouseup", disabledrawing);
+				incre.addEventListener("click", increaseradius);
+				decre.addEventListener("click", decreaseradius);
+				savebtn.addEventListener("click", save);
+			}
+			function enabledrawing() {
+				isdrawable = true;
+			}
+			function disabledrawing() {
+				isdrawable = false;
+			}
+			function drawcircle(e) {
+				if (isdrawable) {
+					mycontext.beginPath();
+					mycontext.arc(e.clientX, e.clientY, radius, 0, Math.PI * 2);
+					mycontext.fill();
+					mycontext.closePath();
+				}
+			}
+			function increaseradius() {
+				radius++;
+				checkradius(radius);
+			}
+			function decreaseradius() {
+				radius--;
+				checkradius(radius);
+			}
+			function checkradius(newradius) {
+				if (newradius > 50) newradius = 50;
+				else if (newradius < 5) newradius = 5;
+				radius = newradius;
+				radiusvalue.innerText = radius;
+			}
+			function changecolor(e) {
+				oldselectedcolor = document.getElementsByClassName("active")[0];
+				if (oldselectedcolor != null) oldselectedcolor.className = "colors";
+
+				newclickedone = e.target;
+				newclickedone.className += " active ";
+
+				mycontext.fillStyle = newclickedone.style.backgroundColor;
+
+				localStorage.setItem("selectedcolor", newclickedone.style.backgroundColor);
+			}
+			function save() {
+				var data = mycanvas.toDataURL("image/png");
+				var a = document.createElement("a");
+				a.href = data;
+				a.download = "image.png";
+				a.click();
+			}
+		</script>
+	</body>
+</html>

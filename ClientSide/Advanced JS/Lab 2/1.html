@@ -1,0 +1,167 @@
+<html lang="en">
+	<head>
+		<title>Advanced JS Lab 2 Task 1</title>
+	</head>
+	<style>
+		header {
+			margin: 1rem auto;
+			width: 50%;
+		}
+		li {
+			margin-bottom: 0.5rem;
+		}
+		li:nth-child(odd) {
+			background-color: rgb(232, 249, 255);
+		}
+		li:nth-child(even) {
+			background-color: rgb(248, 248, 248);
+		}
+	</style>
+	<body>
+		<header></header>
+		<script>
+			//1- Create your own object named Student that contains the following details
+			// ID=>Number , Name=>String , Faculty=>String , Courses => Array
+			// all of the properties should be defined using accessor descriptor, prevent them from being deleted,
+			// iterated or being modified.
+			// you can add any property you need
+			// 2- Create Constructor Function Shape Which will be abstract which contains Dim1,Dim2,color
+			// a- Define PrintData method on Shape Prototype which will display Dim1 , Dim2 , Shape
+			// b- Create Rectangle Constructor Function which will inherit from Shape then declare CalcArea method
+			// on Rectangle Prototype , override toString with your own implementation
+			// c- Create Triangle Constructor Function Which will inherit from Shape , Define Dim3 for Triangle and
+			// declare CalcArea For Rectangle , oveeride toString with your own implementation
+			// 3- Try to repeat JsonPlaceholder Demo with your own implementation which will display posts data as
+			// List ( ul ) , with style for odd li’s and another style for even , then display number of posts inside
+			// header in start of your page
+
+			window.addEventListener("load", function () {
+				//1- create XHR Object
+				var xhr = new XMLHttpRequest();
+				var res = "";
+				// 2- register onreadystatechangeevent
+				xhr.onreadystatechange = function () {
+					//3- if(request complete dor not)
+					if (xhr.readyState == 4) {
+						//4- make sure request is successful reauest
+						if (xhr.status == 200) {
+							// 5- read result using responseText
+							res = xhr.responseText;
+							//console.log(res);
+							//console.log(res); // json
+							var jsObject = JSON.parse(res); // array
+
+							var createdUl = document.createElement("ul");
+							for (var i = 0; i < jsObject.length; i++) {
+								for (var data in jsObject[i]) {
+									var createdLi = document.createElement("li");
+									createdLi.innerText = jsObject[i][data];
+								}
+								createdUl.appendChild(createdLi);
+							}
+							document.getElementsByTagName("header")[0].appendChild(createdUl);
+							// document.body.appendChild(createdUl);
+
+							/*console.log(jsobject[0].Name);*/
+							//document.getElementsByTagName('div')[0].innerText = res;
+						}
+					}
+				}; //end of event on readystatechange
+				/*xhr.open("GET", "studentsdata.json", true);*/
+				xhr.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+				xhr.send("");
+			});
+
+			// function Student(_id, _name, _faculty, _courses) {
+			// 	this.id = _id;
+			// 	this.name = _name;
+			// 	this.faculty = _faculty;
+			// 	this.courses = _courses;
+			// }
+
+			var student1 = {};
+
+			Object.defineProperties(student1, {
+				id: {
+					value: 100,
+					writable: false,
+					configurable: false,
+					enumerable: false,
+				},
+				name: {
+					value: "Ahmed",
+					writable: false,
+					configurable: false,
+					enumerable: false,
+				},
+				faculty: {
+					value: "Engineering",
+					writable: false,
+					configurable: false,
+					enumerable: false,
+				},
+				courses: {
+					value: ["Circuits", "Materials", "Control"],
+					writable: false,
+					configurable: false,
+					enumerable: false,
+				},
+			});
+
+			function Shape(_dim1, _dim2, _color) {
+				this.dim1 = _dim1;
+				this.dim2 = _dim2;
+				this.color = _color;
+			}
+			Shape.prototype.PrintData = function () {
+				console.log("First dimension: " + this.dim1);
+				console.log("Second dimension: " + this.dim2);
+				console.log("Color: " + this.color);
+			};
+
+			function Rectangle(_dim1, _dim2, _color) {
+				Shape.call(this, _dim1, _dim2, _color);
+			}
+
+			Rectangle.prototype = Object.create(Shape.prototype);
+			Rectangle.prototype.constructor = Rectangle;
+			Rectangle.prototype.CalcArea = function () {
+				return this.dim1 * this.dim2;
+			};
+			Rectangle.prototype.toString = function () {
+				return "Width = " + this.dim1 + " Height = " + this.dim2;
+			};
+
+			function Traingle(_dim1, _dim2, _dim3, _color) {
+				Shape.call(this, _dim1, _dim2, _color);
+				this.dim3 = _dim3;
+			}
+
+			Traingle.prototype = Object.create(Shape.prototype);
+			Traingle.prototype.constructor = Traingle;
+			Traingle.prototype.CalcArea = function () {
+				var triCircum = this.dim1 * this.dim2 + this.dim3;
+				return Math.sqrt(
+					(triCircum / 2) *
+						(triCircum / 2 - this.dim1) *
+						(triCircum / 2 - this.dim2) *
+						(triCircum / 2 - this.dim3)
+				);
+			};
+			Traingle.prototype.toString = function () {
+				return "Dim1 = " + this.dim1 + " Dim2 = " + this.dim2 + " Dim3 = " + this.dim3;
+			};
+
+			var shape1 = new Shape(5, 10, "red");
+			shape1.PrintData();
+
+			var rect1 = new Rectangle(15, 20, "Blue");
+			console.log("Rectangle 1 Area = " + rect1.CalcArea());
+			console.log("Overriding toString with => " + rect1.toString());
+
+			var tri1 = new Traingle(8, 5, 5, "green");
+			console.log("Triangle 1 Area = " + tri1.CalcArea());
+			console.log("Overriding toString with => " + tri1.toString());
+		</script>
+	</body>
+</html>

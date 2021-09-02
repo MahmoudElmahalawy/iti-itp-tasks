@@ -1,0 +1,114 @@
+<html lang="en">
+	<head>
+		<title>1</title>
+	</head>
+	<body>
+		<script>
+			// ==> 8
+			// Overridden bar fn was hoisted as it's declared as function statement
+
+			// function foo() {
+			// 	function bar() {
+			// 		return 3;
+			// 	}
+			// 	return bar();
+			// 	function bar() {
+			// 		return 8;
+			// 	}
+			// }
+			// alert(foo());
+
+			// // --------------------
+
+			// // ==> 8
+			// // Successfull call for foo function as it's declared as fn statement
+
+			// alert(foo());
+
+			// function foo() {
+			// 	function bar() {
+			// 		return 3;
+			// 	}
+			// 	return bar();
+			// 	function bar() {
+			// 		return 8;
+			// 	}
+			// }
+
+			// // --------------------
+
+			// //TypeError: foo is not a function
+			// //foo was declared as a function expression so only it's header was hoisted
+
+			// alert(foo());
+
+			// var foo = function () {
+			// 	function bar() {
+			// 		return3;
+			// 	}
+			// 	return bar();
+			// 	function bar() {
+			// 		return 8;
+			// 	}
+			// };
+
+			// // --------------------
+
+			// // ==> 8
+			// // Overridden bar fn was hoisted as it's declared as function statement
+			// // Successfull call for foo function as it's called after declaration as fn expression
+
+			// var foo = function () {
+			// 	function bar() {
+			// 		return 3;
+			// 	}
+			// 	return bar();
+			// 	function bar() {
+			// 		return 8;
+			// 	}
+			// };
+
+			// alert(foo());
+
+			// --------------------
+
+			// // ==> 8
+			// // Result from bar that's declared as function statement as it's the that's hoisted
+
+			// var foo = function () {
+			// 	return bar();
+			// 	var bar = function () {
+			// 		return 3;
+			// 	};
+			// 	function bar() {
+			// 		return 8;
+			// 	}
+			// };
+
+			// alert(foo());
+
+			// // --------------------
+
+			// // ==> 3
+			// // There was no hoisting for fns bodies so value was returned from fn that's called after declaration
+
+			// // ==> 3
+			// // foo fn returns only the first return
+
+			// var foo = function () {
+			// 	var bar = function () {
+			// 		return 3;
+			// 	};
+			// 	// return bar();
+			// 	var bar = function () {
+			// 		return 8;
+			// 	};
+			// 	return bar(); // try to run it also and comment the previous return
+			// };
+
+			// alert(foo());
+
+			// --------------------
+		</script>
+	</body>
+</html>

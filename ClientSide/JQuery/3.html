@@ -1,0 +1,92 @@
+<html lang="en">
+	<head>
+		<title>JQuery Task 3</title>
+		<style>
+			.container {
+				width: 750px;
+				margin: 2rem auto;
+				padding: 1rem;
+				background-color: #bbb;
+				height: auto;
+			}
+			.container p {
+				font-size: 1.5rem;
+				background-color: #ddd;
+				padding: 1rem;
+				text-indent: 50px;
+			}
+			h2 {
+				display: inline-block;
+			}
+			input[type="text"] {
+				margin-left: 50px;
+			}
+			span {
+				background-color: gold;
+			}
+			#newsInput,
+			#searchInput {
+				margin-top: 20px;
+				width: 300px;
+				height: 30px;
+			}
+		</style>
+		<script src="javascript/jq.js"></script>
+		<script>
+			$(function () {
+				var selectedNewsType = "";
+				var color = "";
+				var colors = ["red", "green", "blue"];
+
+				$("input[name='newsType']").click(function () {
+					selectedNewsType = $("input[name='newsType']:checked").val();
+
+					switch (selectedNewsType) {
+						case "Sport":
+							color = colors[0];
+							break;
+						case "Social":
+							color = colors[1];
+							break;
+						case "Politics":
+							color = colors[2];
+							break;
+						default:
+							color = "black";
+					}
+				});
+
+				$("#addNewsBtn").click(function () {
+					if ($("#newsInput").val() && selectedNewsType) {
+						$(".container").append(`<p style="color:${color}">${$("#newsInput").val()}</p>`);
+					}
+				});
+
+				$("#searchInput").keyup(function () {
+					$(".container p").each(function () {
+						if ($(this).text().toLowerCase().indexOf($("#searchInput").val()) != -1) {
+							$(this).show(200);
+						} else {
+							$(this).hide(200);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h2>News Type:</h2>
+			<input type="radio" name="newsType" id="sport" value="Sport" />
+			<label for="sport">Sport</label>
+			<input type="radio" name="newsType" id="social" value="Social" />
+			<label for="social">Social</label>
+			<input type="radio" name="newsType" id="politics" value="Politics" />
+			<label for="politics">Politics</label>
+			<input type="text" name="newsInput" id="newsInput" placeholder="Add Here" />
+			<input type="button" value="Add" id="addNewsBtn" /><br />
+			<label for="searchInput">Search:</label>
+			<input type="text" name="searchInput" id="searchInput" />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<html lang="en">
+	<head>
+		<title>HTML5 CSS3 Lab 3 Task 4</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			font-size: 22px;
+		}
+		input[type="number"] {
+			width: 4rem;
+			height: 3rem;
+			padding: 1rem;
+		}
+		output {
+			background-color: #fff;
+		}
+		.container {
+			width: 60%;
+			margin: 20rem auto;
+			padding: 5rem;
+			display: flex;
+			border: 3px solid black;
+			justify-content: space-around;
+		}
+		.addition-form {
+			background-color: firebrick;
+			padding: 4rem;
+		}
+		.multiplication-form {
+			background-color: dodgerblue;
+			padding: 4rem;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<form oninput="resultadd.value = parseInt(firstnumberadd.value)+parseInt(secondnumberadd.value)" class="addition-form">
+				<input type="number" min="0" max="50" value="1" name="firstnumberadd" /> + 
+				<input type="number" min="0" max="50" value="0" name="secondnumberadd" /> = 
+				<output for="firstnumberadd secondnumberadd" name="resultadd" />1</output>
+			</form>
+			<form oninput="resultmul.value = parseInt(firstnumbermul.value)*parseInt(secondnumbermul.value)" class="multiplication-form">
+				<input type="number" min="0" max="50" value="1" name="firstnumbermul" /> * 
+				<input type="number" min="0" max="50" value="0" name="secondnumbermul" /> = 
+				<output for="firstnumbermul secondnumbermul" name="resultmul" />0</output>
+			</form>
+		</div>
+	</body>
+</html>

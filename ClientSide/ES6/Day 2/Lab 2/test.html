@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ES6 Lab 2 Task 2</title>
+		<script defer>
+			let projectID = prompt("Enter Project's ID");
+			let projectName = prompt("Enter Project's Name");
+			let duration = prompt("Enter Project's Duration");
+
+			project = {
+				projectID,
+				projectName,
+				duration,
+				printData() {
+					for (i in project) {
+						console.log(`${i} => ${project[i]}`);
+					}
+				},
+			};
+
+			console.log(project);
+			console.log(project.printData());
+
+			({ projectID, projectName, duration } = project);
+		</script>
+	</head>
+	<body></body>
+</html>

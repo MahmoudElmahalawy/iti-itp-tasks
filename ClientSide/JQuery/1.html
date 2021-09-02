@@ -1,0 +1,106 @@
+<html lang="en">
+	<head>
+		<title>JQuery Task 1</title>
+	</head>
+	<style>
+		.container {
+			margin: 5rem auto;
+			width: fit-content;
+		}
+		input {
+			display: block;
+			width: 300px;
+			height: 50px;
+			margin: 0 auto 10px auto;
+		}
+		table {
+			width: 500px;
+		}
+		td,
+		th {
+			height: 50px;
+		}
+		tr:nth-child(odd) {
+			background-color: lightblue;
+		}
+	</style>
+	<script src="javascript/jq.js"></script>
+	<script>
+		$(function () {
+			$(":text:first").keyup(function () {
+				// $(this).val()
+				var uservalue = $(this).val();
+				$("tr:gt(0)").each(function () {
+					//$(this)=> current iterated tr
+					var currentvalue = $(this).children("td:first").text();
+					if (currentvalue.toLowerCase().indexOf(uservalue.toLowerCase()) != -1) {
+						//exist
+						/*$(this).show(1000);*/
+						$(this).css("color", "green").show(1000);
+					} else {
+						$(this).css("color", "red").hide(1000);
+					}
+				}); //end of each for tr
+			}); //end of keyup
+			$(":input:eq(1)").keyup(function () {
+				// $(this).val()
+				var uservalue = $(this).val();
+				$("tr:gt(0)").each(function () {
+					//$(this)=> current iterated tr
+					var currentvalue = $(this).children("td:eq(1)").text();
+					if (currentvalue.toLowerCase().indexOf(uservalue.toLowerCase()) != -1) {
+						//exist
+						/*$(this).show(1000);*/
+						$(this).css("color", "green").show(1000);
+					} else {
+						$(this).css("color", "red").hide(1000);
+					}
+				}); //end of each for tr
+			}); //end of keyup
+			$(":input:eq(2)").keyup(function () {
+				// $(this).val()
+				var uservalue = $(this).val();
+				$("tr:gt(0)").each(function () {
+					//$(this)=> current iterated tr
+					var currentvalue = $(this).children("td").text();
+					if (currentvalue.toLowerCase().indexOf(uservalue.toLowerCase()) != -1) {
+						//exist
+						/*$(this).show(1000);*/
+						$(this).css("color", "green").show(1000);
+					} else {
+						$(this).css("color", "red").hide(1000);
+					}
+				}); //end of each for tr
+			}); //end of keyup
+		}); //end of load
+	</script>
+	<body>
+		<div class="container">
+			<input type="text" placeholder="Filter using first name" />
+			<input type="text" placeholder="Filter using last name" />
+			<input type="text" placeholder="Filter using any name" />
+			<table>
+				<tr>
+					<th>FirstName</th>
+					<th>LastName</th>
+				</tr>
+				<tr>
+					<td>Mohamed</td>
+					<td>X</td>
+				</tr>
+				<tr>
+					<td>Khaled</td>
+					<td>Y</td>
+				</tr>
+				<tr>
+					<td>Ibraheem</td>
+					<td>Z</td>
+				</tr>
+				<tr>
+					<td>Abdallah</td>
+					<td>ABC</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

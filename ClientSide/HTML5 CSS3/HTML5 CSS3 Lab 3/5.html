@@ -1,0 +1,107 @@
+<html lang="en">
+	<head>
+		<title>Canvas API Task</title>
+	</head>
+	<style>
+		body {
+			margin: 0;
+			box-sizing: border-box;
+		}
+		canvas {
+			border-bottom: 2px solid black;
+			margin-bottom: 1rem;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<div>
+				<canvas id="canvas" style="display: block">Please update your browser</canvas>
+			</div>
+			<div>
+				<button id="save" type="button">save</button>
+				<input type="file" id="load" name="avatar" accept="image/png" />
+			</div>
+		</div>
+		<script>
+			window.onload = () => {
+				const canvas = document.getElementById("canvas");
+				const saveButton = document.getElementById("save");
+				const loadInput = document.getElementById("load");
+
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight * 0.9;
+				new Drawing(canvas, saveButton, loadInput);
+			};
+
+			class Drawing {
+				constructor(canvas, saveButton, loadInput) {
+					this.isDrawing = false;
+
+					canvas.addEventListener("mousedown", () => this.startDrawing());
+					canvas.addEventListener("mousemove", (event) => this.draw(event));
+					canvas.addEventListener("mouseup", () => this.stopDrawing());
+
+					saveButton.addEventListener("click", () => this.save());
+					loadInput.addEventListener("change", (event) => this.load(event));
+
+					const rect = canvas.getBoundingClientRect();
+
+					this.offsetLeft = rect.left;
+					this.offsetTop = rect.top;
+
+					this.canvas = canvas;
+					this.context = this.canvas.getContext("2d");
+				}
+				startDrawing() {
+					this.isDrawing = true;
+				}
+				stopDrawing() {
+					this.isDrawing = false;
+				}
+				draw(event) {
+					if (this.isDrawing) {
+						// this.context.fillRect(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, 5, 5);
+						this.context.beginPath();
+						this.context.arc(event.clientX, event.clientY, 10, 0, 2 * Math.PI);
+						this.context.fill();
+						this.context.closePath();
+					}
+				}
+				save() {
+					const data = this.canvas.toDataURL("image/png");
+					const a = document.createElement("a");
+					a.href = data;
+					a.download = "image.png";
+					a.click();
+				}
+				load(event) {
+					const file = [...event.target.files].pop();
+					this.readTheFile(file).then((image) => this.loadTheImage(image));
+				}
+				loadTheImage(image) {
+					const img = new Image();
+					const canvas = this.canvas;
+					img.onload = function () {
+						const context = canvas.getContext("2d");
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						context.drawImage(img, 0, 0);
+					};
+					img.src = image;
+				}
+				readTheFile(file) {
+					const reader = new FileReader();
+					return new Promise((resolve) => {
+						reader.onload = (event) => {
+							resolve(event.target.result);
+						};
+						reader.readAsDataURL(file);
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

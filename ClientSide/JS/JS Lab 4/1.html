@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>JS Lab 4 Task 1</title>
+		<style>
+			.container {
+				margin: 4rem auto;
+				width: 50vw;
+			}
+			input {
+				margin-bottom: 1rem;
+			}
+			input[type="text"] {
+				width: 500px;
+			}
+			table {
+				margin: 1rem 0;
+			}
+			th {
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<input type="text" name="" id="inputText" />
+			<input type="button" value="Add" id="addBtn" />
+			<table id="inputsTable">
+				<tr>
+					<th>No.</th>
+					<th>News</th>
+				</tr>
+			</table>
+			<input type="button" value="Count Rows" id="countRowsBtn" />
+		</div>
+		<script>
+			var inputText = document.getElementById("inputText");
+			var addBtn = document.getElementById("addBtn");
+			var inputsTable = document.getElementById("inputsTable");
+			var countRowsBtn = document.getElementById("countRowsBtn");
+
+			function addTextToTable() {
+				if (!inputText.value) {
+					alert("Enter some text then click Add");
+				} else {
+					var trNode = document.createElement("tr");
+					var tdNodeSerial = document.createElement("td");
+					var tdNodeText = document.createElement("td");
+					var serialNode = document.createTextNode(
+						document.getElementsByTagName("table")[0].children
+							.length
+					);
+					var textNode = document.createTextNode(inputText.value);
+					tdNodeSerial.appendChild(serialNode);
+					tdNodeText.appendChild(textNode);
+					trNode.appendChild(tdNodeSerial);
+					trNode.appendChild(tdNodeText);
+					inputsTable.appendChild(trNode);
+				}
+				inputText.value = "";
+			}
+
+			function countRows() {
+				var countDiv = document.createElement("div");
+				var rowsCount = document.createTextNode(
+					document.getElementsByTagName("table")[0].children.length
+				);
+				countDiv.appendChild(rowsCount);
+				document
+					.getElementsByClassName("container")[0]
+					.appendChild(countDiv);
+			}
+
+			addBtn.addEventListener("click", addTextToTable);
+			countRowsBtn.addEventListener("click", countRows);
+		</script>
+	</body>
+</html>

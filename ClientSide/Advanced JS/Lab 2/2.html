@@ -1,0 +1,97 @@
+<html lang="en">
+	<head>
+		<title>Advanced JS Lab 2 Task 2</title>
+		<style>
+			.container {
+				display: flex;
+				width: 50%;
+				margin: 5rem auto;
+				justify-content: space-around;
+				align-items: center;
+				border: 5px solid black;
+				padding: 3rem;
+			}
+			select {
+				width: 300px;
+				height: 100px;
+				line-height: 1.25;
+				font-size: 2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- AJAX & JSON
+            find out the rockbands.json file to make a page with 2 dropdown
+            lists, the 1st one is filled with the band and the 2nd one is filled with
+            the artist after selecting a band from its dropdown list. Once the user
+            selects an artist of the band; open his link -->
+
+		<div class="container">
+			<select name="bandMenu" id="bandMenu">
+				<option value="" disabled selected>Choose a band</option>
+			</select>
+			<select name="artistMenu" id="artistMenu">
+				<option value="" disabled selected>Choose an artist</option>
+			</select>
+		</div>
+
+		<script>
+			var bandMenu = document.getElementById("bandMenu");
+			var artistMenu = document.getElementById("artistMenu");
+
+			artistMenu.style.opacity = "0.5";
+
+			window.addEventListener("load", function () {
+				var xhr = new XMLHttpRequest();
+				var res = "";
+
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							res = xhr.responseText;
+							var jsObject = JSON.parse(res);
+							var arrKeys = Object.keys(jsObject);
+
+							for (var i = 0; i < arrKeys.length; i++) {
+								var bandOpt = document.createElement("option");
+								bandOpt.innerText = arrKeys[i];
+								bandMenu.appendChild(bandOpt);
+							}
+
+							var arrValues;
+							bandMenu.addEventListener("change", function () {
+								artistMenu.style.opacity = "1";
+								arrValues = jsObject[bandMenu.value];
+
+								// artistMenu.innerHTML = "";
+
+								// var selectedop = document.createElement("option");
+								// selectedop.selected = true;
+								// selectedop.disabled = true;
+								// selectedop.innerText = "Choose an Artist";
+								// artistMenu.appendChild(selectedop);
+
+								for (var i = 0; i < arrValues.length; i++) {
+									var artistOpt = document.createElement("option");
+									artistOpt.innerText = arrValues[i].name;
+									artistMenu.appendChild(artistOpt);
+								}
+							});
+
+							artistMenu.addEventListener("change", function () {
+								for (var i = 0; i < arrValues.length; i++) {
+									if (arrValues[i].name == artistMenu.value)
+										window.location.href = arrValues[i].value;
+								}
+
+								// console.log(jsObject[bandMenu.value].value);
+							});
+						}
+					}
+				};
+				xhr.open("GET", "rockbands.json", true);
+				xhr.send("");
+			});
+		</script>
+	</body>
+</html>

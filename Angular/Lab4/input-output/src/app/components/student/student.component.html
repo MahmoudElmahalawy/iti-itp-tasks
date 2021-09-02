@@ -1,0 +1,56 @@
+ <button (click)="showAdd()">{{btnlbl}}</button> 
+ <div class="alert alert-danger" [hidden]="nflag">
+     <app-studentadd (studentAdded)="save($event)"></app-studentadd>
+</div>
+
+
+<!-- <input [(ngModel)]="age">{{age}}
+
+<div [ngClass]="{'bg-danger':age>30,'bg-success': age>30}">
+    age greater than 2
+</div>
+
+<div class="btn-danger btn-success">
+    hhghh
+</div>
+<div *ngIf="students.length>2">
+    <h1>
+        students numbers greater than 2
+    </h1>
+</div> -->
+
+
+<table class="table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th *ngIf="opflag"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of students;let x=index;let o=odd" [ngClass]="{'bgred': o,'bgpur':!o}">
+            <td>{{x+1}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td *ngIf="opflag">
+                <button (click)="DeleteStudent(item.id)">Delete</button>
+                <button (click)="GetStudentDetails(item.id)">Details</button>
+                <button (click)="GetStudentDetails(item.id)">Edit</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <!-- show selected student data in textbox -->
+    <!-- save -->
+</div>
+
+
+<div [hidden]="dflag">
+    <app-studentdetails [xyz]="dstd"></app-studentdetails>
+</div>

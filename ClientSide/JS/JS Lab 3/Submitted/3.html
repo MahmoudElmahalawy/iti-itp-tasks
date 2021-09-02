@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>JS Lab 3 Task 3</title>
+	</head>
+	<style>
+		.wrapper {
+			margin: 2rem auto;
+			text-align: center;
+			border: 3px solid black;
+			padding: 2rem 4rem;
+			width: fit-content;
+		}
+		.light {
+			display: inline-block;
+			width: 75px;
+			height: 75px;
+			border-radius: 50%;
+			background-color: black;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<div class="light"></div>
+			<div class="light"></div>
+			<div class="light"></div>
+			<div class="light"></div>
+			<div class="light"></div>
+		</div>
+
+		<script>
+			var i = 0;
+			var lightDivs = document.querySelectorAll(".light");
+
+			setInterval(function () {
+				lightDivs.forEach(function (div) {
+					div.style.backgroundColor = "black";
+				});
+				lightDivs[i].style.backgroundColor = "red";
+
+				i++;
+			}, 1100);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+<div class="alert alert-danger text-center" role="alert">
+  Binding manually<br />{{ inputText }}
+</div>
+<input
+  #manualBindInput
+  type="text"
+  class="form-control"
+  (keyup)="bindText($event.target)"
+/>
+
+<hr />
+
+<div class="alert alert-danger text-center" role="alert">
+  Using ngModel<br />{{ formModelInputText }}
+</div>
+<input type="text" class="form-control" [(ngModel)]="formModelInputText" />

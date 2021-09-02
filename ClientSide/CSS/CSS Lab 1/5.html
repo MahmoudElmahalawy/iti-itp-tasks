@@ -1,0 +1,181 @@
+<html>
+	<head>
+		<title>Task 5</title>
+		<style>
+			body {
+				font-family: tahoma;
+				font-size: 0.9rem;
+			}
+
+			h2 {
+				color: #005d36;
+				font-size: 1rem;
+			}
+
+			input,
+			label {
+				display: block;
+				margin-bottom: 0.5rem;
+			}
+
+			input,
+			select {
+				margin-bottom: 1rem;
+				width: 100%;
+			}
+
+			hr {
+				border-top: 3px dotted #95ca57;
+			}
+
+			.wrapper {
+				width: 50vw;
+				margin: 0 auto;
+				/* padding: 0 5rem; */
+			}
+
+			.icon {
+				display: block;
+				width: 48px;
+				margin-top: 15px;
+			}
+
+			.half-width {
+				display: inline-block;
+				width: 49%;
+			}
+
+			.one-third-width {
+				display: inline-block;
+				width: 32%;
+			}
+
+			.submit__btn {
+				background-color: #95ca57;
+				padding: 1rem 2rem;
+			}
+
+			.ml-s {
+				margin-left: 3px;
+			}
+
+			input[type="submit"] {
+				width: fit-content;
+				padding: 5px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<form action="#">
+				<img src="header.png" alt="header" width="100%" />
+
+				<img
+					class="icon"
+					src="icon-1.png"
+					alt="non-profit organization icon"
+				/>
+				<h2><b>non-profit organization</b></h2>
+
+				<div class="half-width">
+					<label for="name">Name</label>
+					<input type="text" name="name" />
+				</div>
+
+				<div class="half-width ml-s">
+					<label for="phone">Phone Number</label>
+					<input type="text" name="phone" />
+				</div>
+
+				<label for="street">Street Address</label>
+				<input type="text" name="street" />
+
+				<div class="one-third-width">
+					<label for="city">City</label>
+					<input type="text" name="city" />
+				</div>
+
+				<div class="one-third-width ml-s">
+					<label for="state">State</label>
+					<input type="text" name="state" />
+				</div>
+
+				<div class="one-third-width ml-s">
+					<label for="zipcode">Zip Code</label>
+					<input type="text" name="zipcode" />
+				</div>
+
+				<hr />
+
+				<img
+					class="icon"
+					src="icon-2.png"
+					alt="sponsor contact information icon"
+				/>
+				<h2><b>sponsor contact information</b></h2>
+
+				<div class="half-width">
+					<label for="fname">First Name</label>
+					<input type="text" name="fname" />
+				</div>
+
+				<div class="half-width ml-s">
+					<label for="lname">Last Name</label>
+					<input type="text" name="lname" />
+				</div>
+
+				<div class="half-width">
+					<label for="phone">Phone Number</label>
+					<input type="text" name="phone" />
+				</div>
+
+				<div class="half-width ml-s">
+					<label for="email">Email Address</label>
+					<input type="text" name="email" />
+				</div>
+
+				<label for="street">Street Address</label>
+				<input type="text" name="street" />
+
+				<div class="one-third-width">
+					<label for="city">City</label>
+					<input type="text" name="city" />
+				</div>
+
+				<div class="one-third-width ml-s">
+					<label for="state">State</label>
+					<input type="text" name="state" />
+				</div>
+
+				<div class="one-third-width ml-s">
+					<label for="zipcode">Zip Code</label>
+					<input type="text" name="zipcode" />
+				</div>
+
+				<hr />
+
+				<img class="icon" src="icon-3.png" alt="pricing icon" />
+
+				<div class="half-width">
+					<label for="damount">Donation Amount</label>
+					<select name="damount">
+						<option value="10">$10</option>
+						<option value="20">$20</option>
+					</select>
+				</div>
+
+				<div class="half-width ml-s">
+					<label for="pmethod">Payment Method</label>
+					<select name="pmethod">
+						<option value="cash">Cash</option>
+						<option value="credit">Credit Card</option>
+					</select>
+				</div>
+
+				<div class="submit__btn">
+					<input type="submit" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

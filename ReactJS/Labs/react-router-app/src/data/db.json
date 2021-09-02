@@ -1,0 +1,31 @@
+{
+	"students": [
+		{
+			"id": 1,
+			"name": "Ahmed",
+			"age": "20",
+			"courses": ["CSS", "HTML"],
+			"trackName": "Web dev",
+			"dateOfBirth": "2001",
+			"address": "Mansoura"
+		},
+		{
+			"id": 2,
+			"name": "Bassant",
+			"age": "21",
+			"courses": ["CSS", "HTML"],
+			"trackName": "Web dev",
+			"dateOfBirth": "2000",
+			"address": "Cairo"
+		},
+		{
+			"id": 3,
+			"name": "Hamada",
+			"age": "21",
+			"courses": ["HTML", "JS", "ReactJS"],
+			"trackName": "Web dev",
+			"dateOfBirth": "2000",
+			"address": "Cairo"
+		}
+	]
+}

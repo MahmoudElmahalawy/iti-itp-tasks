@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lab 3 Task 2</title>
+		<style>
+			body {
+				font-family: Helvetica;
+			}
+			table {
+				margin: 2rem auto;
+				width: 75%;
+				border: 1px solid black;
+				text-align: center;
+			}
+			th {
+				height: 50px;
+			}
+			td {
+				width: 500px;
+				border: 1px solid grey;
+			}
+			img {
+				max-width: 500px;
+			}
+		</style>
+		<script src="js/jquery-v3.6.0.min.js"></script>
+		<script defer>
+			window.addEventListener("load", function () {
+				// var dataTable = document.getElementById("dataTable");
+
+				async function getCharacters() {
+					let data = await fetch("https://www.breakingbadapi.com/api/characters/");
+					let allCharacters = await data.json();
+
+					allCharacters.forEach((character) => {
+						$("#dataTable").append(
+							`<tr><td>${character.char_id}</td><td>${character.name}</td><td><img src="${character.img}" /></td></tr>`
+						);
+					});
+				}
+				getCharacters();
+			});
+		</script>
+	</head>
+	<body>
+		<table id="dataTable">
+			<tr>
+				<th>Character ID</th>
+				<th>Character Name</th>
+				<th>Character Image</th>
+			</tr>
+		</table>
+	</body>
+</html>

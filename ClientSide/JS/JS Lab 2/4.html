@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>JS Lab 2 Task 4</title>
+	</head>
+	<body>
+		<script>
+			var arr = [];
+			var ascArr = [];
+			var desArr = [];
+
+			for (var i = 0; i < 5; i++) {
+				var userInput = parseInt(prompt("Enter a number"));
+				arr[i] = userInput;
+			}
+
+			document.write("<h1>Sorting</p>");
+			document.write("<hr>");
+
+			document.writeln(
+				"You've Entered the values of &nbsp;" + arr + "<br>"
+			);
+
+			ascArr = arr.sort(function (a, b) {
+				return a - b;
+			});
+			document.writeln(
+				"Values in Ascending order &nbsp;" + ascArr + "<br>"
+			);
+
+			desArr = arr.sort(function (a, b) {
+				return b - a;
+			});
+			document.writeln("Values in Descending order &nbsp;" + desArr);
+		</script>
+	</body>
+</html>

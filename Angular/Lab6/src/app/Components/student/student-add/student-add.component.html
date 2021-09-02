@@ -1,0 +1,69 @@
+<div class="container">
+  <form #t="ngForm">
+    <span class="badge p-badge-danger" *ngIf="i.errors?.required"
+      >Student must have an ID</span
+    >
+    <span class="badge p-badge-danger" *ngIf="i.errors?.min"
+      >ID must be unique</span
+    >
+    <input
+      class="form-control"
+      #i="ngModel"
+      name="id"
+      [(ngModel)]="nstd.id"
+      type="number"
+      required
+      [min]="1"
+    />
+
+    <span class="badge p-badge-danger" *ngIf="n.errors?.required"
+      >You must enter student's name</span
+    >
+    <span class="badge p-badge-danger" *ngIf="n.errors?.minlength"
+      >Name length must be at least
+      {{ n.errors?.minlength.requiredLength }} characters</span
+    >
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup">
+        <input
+          class="form-control"
+          placeholder="Username"
+          #n="ngModel"
+          name="name"
+          [(ngModel)]="nstd.name"
+          type="text"
+          required
+          [minlength]="3"
+          [maxlength]="12"
+        />
+      </div>
+    </div>
+
+    <span class="badge p-badge-danger" *ngIf="a.errors?.required"
+      >Enter age is required</span
+    >
+    <span class="badge p-badge-danger" *ngIf="a.errors?.min"
+      >Min age is 15 years</span
+    >
+    <span class="badge p-badge-danger" *ngIf="a.errors?.max"
+      >Max age is 15 years</span
+    >
+    <input
+      class="form-control"
+      #a="ngModel"
+      name="age"
+      [(ngModel)]="nstd.age"
+      type="number"
+      required
+      [min]="15"
+      [max]="30"
+    />
+  </form>
+  <button
+    class="btn btn-success btn-block"
+    (click)="Save(a)"
+    [disabled]="t.invalid"
+  >
+    Add
+  </button>
+</div>

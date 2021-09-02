@@ -1,0 +1,69 @@
+body {
+	font-family: verdana;
+	color: grey;
+}
+
+.wrapper {
+	margin: 50px auto;
+	padding: 2.5rem;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	width: 400px;
+}
+
+.fb, .tw {
+	display: inline-block;
+	/* width: 300px; */
+	border: none;
+	background-color: #3b5999;
+	padding: 5px 10px;
+	color: white;
+	cursor: pointer;
+}
+
+.tw {
+	background-color: #00AEF2;
+}
+
+.or {
+	margin: 2rem auto 1rem auto;
+	background-color: lightgrey;
+	width: fit-content;
+	padding: 5px;
+	border-radius: 50%;
+	color: #000;
+}
+
+.form__inpf {
+	width: 100%;
+	margin: 0.3rem 0;
+	padding: 0.75rem;
+	border: 2px solid grey;
+}
+
+.form__chk {
+	margin: 1rem 0;
+	border-radius: 0;
+	border-color: grey;
+}
+
+.fpass {
+	margin-left: 2rem;
+	text-decoration: none;
+	color: grey;
+}
+
+.form__login {
+	width: 100%;
+	padding: 0.6rem 0;
+	color: white;
+	background-color: #3b5999;
+	border: none;
+	font-weight: bold;
+}
+
+.signup > a {
+	text-decoration: none;
+	color: #00b0ee;
+}

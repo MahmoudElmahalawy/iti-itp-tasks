@@ -1,0 +1,9 @@
+<button (click)="load()">Load Data</button>
+<div *ngFor="let item of students">
+    <h1>
+        {{item.id}} :{{item.name}}:{{item.age}}
+        <button (click)="delete(item.id)">Delete</button>
+    </h1>
+</div>
+//crud input , output, student data
+//list , add , delete using service

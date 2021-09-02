@@ -1,0 +1,10 @@
+a- declare an array of colors in your script then change background color for body by new color every 1 second
+b- declare an array of images in your script then change background image for your body with new image every 5 seconds
+
+NB: to access body in script => 
+document.body.style.color=  "color"
+	or 
+document.body.style.backgroundImage="url(imagepath)";
+
+
+c- display random number from 1 to 10 every 2 seconds 

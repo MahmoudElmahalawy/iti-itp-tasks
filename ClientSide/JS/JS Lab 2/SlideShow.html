@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.header {
+				margin: 1rem auto;
+				border: 2px solid yellow;
+				width: fit-content;
+				background-color: white;
+			}
+			.header:after {
+				content: "";
+				width: 100%;
+				border-bottom: 3px solid yellow;
+				position: absolute;
+				left: 0;
+				top: 70px;
+				z-index: -1;
+			}
+			.header--blue {
+				color: lightskyblue;
+			}
+			body {
+				font-family: candara light;
+			}
+			div {
+				margin: 10px auto;
+				padding: 10px;
+				width: 650px;
+				text-align: center;
+			}
+			img {
+				width: 500px;
+				height: 400px;
+				border: 8px solid #ecd427;
+				margin-bottom: 20px;
+			}
+			input {
+				margin: 10px;
+				width: 70px;
+				padding: 10px;
+				border: none;
+				font-size: 1.5rem;
+				margin: 0 1.5rem;
+				color: white;
+			}
+			input:focus {
+				outline: none;
+				background-color: pink;
+			}
+			.input--yellow {
+				background-color: #ffc000;
+			}
+			.input--green {
+				background-color: #00af50;
+				width: 90px;
+			}
+			.input--red {
+				background-color: #ff2c2c;
+				width: 90px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h1><span class="header--blue">Slide Show</span> Game</h1>
+		</div>
+		<div>
+			<img src="UP/1.jpg" id="myimg" />
+			<br />
+			<br />
+			<input
+				class="input--yellow"
+				type="button"
+				value="<"
+				onclick="previmgfun();"
+			/>
+			<input
+				class="input--green"
+				type="button"
+				value="Play"
+				onclick="startshowfun();"
+			/>
+			<input
+				class="input--red"
+				type="button"
+				value="Stop"
+				onclick="stopimgfun();"
+			/>
+			<input
+				class="input--yellow"
+				type="button"
+				value=">"
+				onclick="nextimgfun();"
+			/>
+		</div>
+
+		<script>
+			// 1- declare array of images pathes
+			var images = [
+				"up/1.jpg",
+				"up/2.jpg",
+				"up/3.jpg",
+				"up/4.jpg",
+				"up/5.jpg",
+			];
+			i = 0;
+			function startshowfun() {
+				t = setInterval("nextimgfun()", 1000);
+			}
+			function nextimgfun() {
+				i++;
+				if (i >= images.length) {
+					i = 0;
+				}
+				myimg.src = images[i];
+			}
+			function previmgfun() {
+				i--;
+				if (i < 0) {
+					i = images.length - 1;
+				}
+				myimg.src = images[i];
+			}
+			function stopimgfun() {
+				clearInterval(t);
+			}
+		</script>
+	</body>
+</html>

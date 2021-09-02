@@ -1,0 +1,130 @@
+<html lang="en">
+	<head>
+		<title>HTML5 CSS3 Lab 3 Task 1</title>
+		<style>
+			.container {
+				margin: 3rem auto;
+				width: 70vw;
+				min-width: fit-content;
+				height: 70%;
+				border: 10px solid black;
+				display: flex;
+				padding: 1rem;
+				justify-content: space-between;
+			}
+			.vidbtns-container {
+				display: flex;
+				flex-direction: column;
+				width: fit-content;
+				/* height: 100%; */
+				justify-content: space-evenly;
+				align-items: center;
+				padding: 0 1rem;
+				flex-basis: 150px;
+				flex-wrap: wrap;
+				border: 3px solid black;
+			}
+			.btn {
+				width: 100%;
+				height: 50px;
+				background-color: #fff;
+				border: 1px solid black;
+			}
+			.btn:hover {
+				background-color: #000;
+				color: white;
+				transition: all 0.3s ease-in-out;
+				cursor: pointer;
+			}
+			.btn:active {
+				animation: btnAnimation 0.25s ease-in-out forwards;
+			}
+			.video-container {
+				/* flex: 1 0 720px; */
+				flex-grow: 1;
+				flex-shrink: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 3px solid black;
+				position: relative;
+			}
+			.video-container > video:hover {
+				transform: scale(1.2);
+				transition: transform 0.3s ease-in-out;
+			}
+			/* .pause-play-indicator {
+				display: block;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: white;
+				position: absolute;
+				text-align: center;
+				z-index: 100;
+				border: 2px solid black;
+			} */
+
+			@keyframes btnAnimation {
+				/* 0% {
+					visibility: visible;
+				} */
+				50% {
+					transform: scale(1.5);
+					opacity: 0.1;
+				}
+				/* 100% {
+					visibility: visible;
+				} */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="vidbtns-container"></div>
+			<div class="video-container">
+				<video src="" id="mainVid" autoplay muted></video>
+				<!-- <div class="pause-play-indicator">></div> -->
+			</div>
+		</div>
+	</body>
+	<script>
+		var vidBtnsContainer = document.getElementsByClassName("vidbtns-container")[0];
+		var videoBtn = document.getElementsByClassName("btn");
+		var videoContainer = document.getElementsByClassName("video-container")[0];
+		var mainVid = document.getElementById("mainVid");
+		// var isPaused = false;
+
+		for (var btn = 1; btn <= 10; btn++) {
+			var newBtn = document.createElement("button");
+			newBtn.value = btn;
+			newBtn.innerText = "Video " + btn;
+			newBtn.classList.add("btn");
+
+			vidBtnsContainer.append(newBtn);
+		}
+
+		Array.from(videoBtn).forEach(function (btn) {
+			btn.addEventListener("click", changeVidSrc);
+		});
+		mainVid.addEventListener("click", pauseResumeVid);
+		mainVid.addEventListener("dblclick", goFullScreen);
+
+		function changeVidSrc() {
+			mainVid.src = "vid-" + this.value + ".mp4";
+		}
+
+		function pauseResumeVid() {
+			if (!mainVid.paused) {
+				mainVid.pause();
+			} else {
+				mainVid.play();
+			}
+			// isPaused = !isPaused;
+		}
+
+		function goFullScreen() {
+			mainVid.requestFullscreen();
+		}
+	</script>
+</html>

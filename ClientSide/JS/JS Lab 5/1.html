@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>JS Lab 5 Task 1</title>
+		<style>
+			body {
+				box-sizing: border-box;
+				line-height: 1.5;
+			}
+			li {
+				cursor: pointer;
+				margin-bottom: 3px;
+			}
+			.output__container {
+				/* float: left; */
+				display: flex;
+				width: 900px;
+				justify-content: space-between;
+				margin: 3rem auto;
+			}
+			.left__div,
+			.right__div {
+				width: 400px;
+				height: 150px;
+				border: 5px solid black;
+				display: inline-block;
+				padding: 1rem;
+				overflow: scroll;
+			}
+			.input__container {
+				text-align: center;
+			}
+			.input__container input {
+				margin-bottom: 1rem;
+			}
+			.selected {
+				background-color: grey;
+				/* cursor: pointer; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="output__container">
+			<div class="left__div">
+				<li>JS</li>
+				<li>JQuery</li>
+				<li>Angular</li>
+				<li>HTML</li>
+			</div>
+			<div class="right__div">
+				<li>CSS</li>
+			</div>
+		</div>
+		<div class="input__container">
+			<input type="button" value="<" id="toLeftBtn" />
+			<input type="button" value=">" id="toRightBtn" />
+			<div class="input__field">
+				<label for="addCrsInput">Add Course</label>
+				<input type="text" name="addCrsInput" id="addCrsInput" />
+				<input type="button" value="Add" id="addCrsBtn" />
+			</div>
+		</div>
+		<script>
+			var leftDiv = document.getElementsByClassName("left__div")[0];
+			var rightDiv = document.getElementsByClassName("right__div")[0];
+			var addCrsInput = document.getElementById("addCrsInput");
+			var addCrsBtn = document.getElementById("addCrsBtn");
+			var toLeftBtn = document.getElementById("toLeftBtn");
+			var toRightBtn = document.getElementById("toRightBtn");
+			var listItems = document.getElementsByTagName("li");
+			var selectdItems = document.getElementsByClassName("selected");
+
+			addCrsBtn.addEventListener("click", addCrs);
+			toLeftBtn.addEventListener("click", moveToLeft);
+			toRightBtn.addEventListener("click", moveToRight);
+			addEventListenersToLis();
+
+			function addEventListenersToLis() {
+				listItems = document.getElementsByTagName("li");
+				for (var i = 0; i < listItems.length; i++) {
+					listItems[i].addEventListener("click", selectLi);
+				}
+			}
+
+			function selectLi() {
+				if (this.classList.contains("selected")) {
+					this.classList.remove("selected");
+				} else {
+					this.classList.add("selected");
+				}
+			}
+
+			function addCrs() {
+				if (addCrsInput.value) {
+					var inputLi = document.createElement("li");
+					var inputText = document.createTextNode(addCrsInput.value);
+					inputLi.appendChild(inputText);
+					leftDiv.appendChild(inputLi);
+					addCrsInput.value = "";
+					addCrsInput.focus();
+					addEventListenersToLis();
+				}
+			}
+
+			function moveToLeft() {
+				selectdItems = document.getElementsByClassName("selected");
+				for (var item = 0; item < selectdItems.length; item++) {
+					leftDiv.append(selectdItems[item]);
+				}
+				// var lastLiInRightDiv = rightDiv.children[rightDiv.childElementCount - 1];
+				// rightDiv.children[rightDiv.childElementCount - 1].remove();
+			}
+
+			function moveToRight() {
+				selectdItems = document.getElementsByClassName("selected");
+				for (var item = 0; item < selectdItems.length; item++) {
+					rightDiv.append(selectdItems[item]);
+				}
+				// var lastLiInLeftDiv = leftDiv.children[leftDiv.childElementCount - 1];
+				// leftDiv.children[leftDiv.childElementCount - 1].remove();
+			}
+		</script>
+	</body>
+</html>
